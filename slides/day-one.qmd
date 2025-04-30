@@ -1,0 +1,243 @@
+---
+title: "Advanced Web Data Collection (Day 1)"
+author: "Cornelius Erfort"
+date: "2025-05-16"
+format: 
+  revealjs:
+     logo: hu.png
+     css: custom.css
+     slide-number: true
+     show-slide-number: all
+     preview-links: auto
+     theme: default
+pdf: default
+date-format: long
+from: markdown+emoji
+editor: visual
+
+---
+
+
+```{r install, echo = F}
+# install.packages("rmarkdown")
+# install.packages("tidyverse")
+# install.packages("qrcode")
+
+library(tidyverse)
+library(rmarkdown)
+library(qrcode)
+```
+
+
+---
+
+## About the Instructor :wave:
+
+- Post-doctoral Researcher at Witten/Herdecke University
+- Focus on political science and data collection methods
+
+---
+
+## Why Web Scraping?
+
+- Access to unique and innovative data sources
+- Complementing traditional research methods
+
+---
+
+## Organizational Points
+
+- Workshop logistics and expectations
+- Resources and support
+
+---
+
+## Questions
+
+---
+
+## Presentations and Projects
+
+- Schedule and expectations for student presentations
+
+---
+
+## Research Collaboration Tools
+
+- Introduction to tools like Posit Cloud for collaborative research
+
+---
+
+## Overview of the workshop
+
+- Day 1 Topics:
+  - HTML and Web Structure: Basics of HTML and CSS, `rvest`
+  - Web Scraping: Introduction, practical exercises
+  - APIs and Data Formats
+  - Hands-on Project
+
+---
+
+
+## Overview of the workshop
+
+- Day 2 Topics:
+  - Advanced Techniques 1: Dynamic content etc.
+  - Advanced Techniques 2: File management, Scheduling, challenges
+  - Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks
+  - Outlook
+
+
+# HTML and Web Structure
+
+## HTML
+
+-   HyperText Markup Language
+-   Helps us find the information we want
+
+------------------------------------------------------------------------
+
+## HTML Syntax
+
+. . .
+
+``` {.html code-line-numbers="|1|5,10|6|7|9"}
+<html>
+<head>
+  <title>Page title</title>
+</head>
+<body>
+  <h1 id='first'>A heading</h1>
+  <p>Some text &amp; <b>some bold text.</b></p>
+  <img src='myimg.png' width='100' height='100'>
+  <p>This is a <a href="https://www.google.com">Link</a></p>
+</body>
+```
+
+------------------------------------------------------------------------
+
+## CSS
+
+. . .
+
+``` {.html code-line-numbers="3|7|8|10"}
+<html>
+<head>
+<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+  <h1 id='first'>A heading</h1>
+  <p class = "main-text">Some text &amp; <b>some bold text.</b></p>
+  <p>This is a <a href="https://www.google.com" class = "important-link">Link</a></p>
+  <div>
+    <p id = "twitter">Follow us on Twitter.</p>
+  </div>
+
+</body>
+```
+
+------------------------------------------------------------------------
+
+## CSS path
+
+-   `elements` are referred to by their name, e.g. `p`
+
+. . .
+
+-   Elements within other elements can be referred to: `div p`
+
+. . .
+
+-   The `class` attribute is referred to with a dot, e.g. `.important-link`
+
+. . .
+
+-   The `id` attribute is referred to with a hash, e.g. `#twitter`
+
+------------------------------------------------------------------------
+
+## View the source code in the browser
+
+[MPs from the 17th Bundestag](https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html), CSS path: `.linkIntern`
+
+```{r bundestag}
+qr_code("https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html") %>% plot
+```
+
+<https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html>
+
+------------------------------------------------------------------------
+
+## View the source code in the browser
+
+[Political scientists on Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists), CSS path: `h2+ ul li > a:nth-child(1)`
+
+```{r polsci}
+qr_code("https://en.wikipedia.org/wiki/List_of_political_scientists") %>% plot
+```
+
+<https://en.wikipedia.org/wiki/List_of_political_scientists>
+
+------------------------------------------------------------------------
+
+## Selector Gadget
+
+[MPs from the 17th Bundestag](https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html), CSS path: `.linkIntern`
+
+[Political scientists on Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists), CSS path: `h2+ ul li > a:nth-child(1)`
+
+------------------------------------------------------------------------
+
+## CSS Diner
+
+```{r css}
+qr_code("https://flukeout.github.io/") %>% plot
+```
+
+## <https://flukeout.github.io/>
+
+## Package `xml2`
+
+-   `read_html()`
+
+. . .
+
+-   `read_html("http://rvest.tidyverse.org/")`
+
+. . .
+
+-   `read_html("myfiles/myhtml.html")`
+
+## Package `rvest`
+
+-   `html_elements(html, css = "your css path")` gives you the elements that fit to your css path
+
+. . .
+
+-   `html_text2(html)` gives you the content/text of the elements
+
+. . .
+
+-   `html_attr(html, name = "name of the html attribute")` gives you the values/texts of the html attribute
+
+
+------------------------------------------------------------------------
+
+
+# Web Scraping
+
+- Introduction to web scraping tools in R
+- Practical exercises in scraping political websites and news articles
+
+---
+
+# APIs and Data Formats
+
+- Accessing structured data via APIs
+- Handling different data formats (JSON, XML, CSV) in R
+
+---
+
+# Exercises and Hands-on Projects
+
+- Practical applications and exercises 
