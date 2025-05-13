@@ -1,4 +1,4 @@
-# 05-webscraping-exercise
+# webscraping-exercise
 
 # For a project on responsiveness of elected politicians, you were asked to 
 # create a dataset of the the responses of Members of the Berlin State 
@@ -9,7 +9,7 @@
 # They are organized in 67 pages. (Page 1 is referred to as page=0 and page 67 as page=66.)
 
 # 2. Create a vector with links to all the pages with links to the questions/responses.
-links <- str_c("https://www.abgeordnetenwatch.de/berlin/fragen-antworten?page=", 0:66)
+links <- str_c("https://www.abgeordnetenwatch.de/berlin/fragen-antworten?page=", 0:174)
 links
 
 # 3. Create a folder where you will save the HTML files with the full questions/responses.

@@ -1,4 +1,4 @@
-# 03-html - exercise
+# html - exercise
 
 # 1. Go to the website of the Parliament of Australia.
 
@@ -26,7 +26,7 @@ html_text2(elements)
 members <- data.frame(link = html_attr(elements, "href"), name = html_text2(elements))
 
 # 11. Try finding a CSS path for the party of the members on the page.
-# Sorry for the confusion. There is no reasonable css path.
+# There might be no reasonable css path.
 
 # 12. How would you add the party of members to your dataset?
-# Using regular expressions. 
+# Using regular expressions.

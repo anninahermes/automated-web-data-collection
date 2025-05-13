@@ -16,7 +16,7 @@ myhtml <- read_html("https://en.wikipedia.org/wiki/List_of_political_scientists"
 View(myhtml)
 
 # Select the relevant elements (Get the CSS path using Selector Gadget)
-myelements <- html_elements(myhtml, css = "h2+ ul li > a:nth-child(1)")
+myelements <- html_elements(myhtml, css = ".mw-heading2+ ul li > a:nth-child(1)")
 
 myelements
 

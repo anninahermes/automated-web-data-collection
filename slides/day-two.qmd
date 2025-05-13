@@ -1,0 +1,403 @@
+---
+title: "Advanced Web Data Collection (Day 2)"
+author: "Cornelius Erfort"
+date: "2025-05-17"
+format: 
+  revealjs:
+     css: custom.css
+     slide-number: true
+     show-slide-number: all
+     preview-links: auto
+     theme: default
+pdf: default
+date-format: long
+from: markdown+emoji
+editor: visual
+---
+
+```{r install, echo = F}
+# install.packages("rmarkdown")
+# install.packages("tidyverse")
+# install.packages("qrcode")
+
+library(tidyverse)
+library(rmarkdown)
+library(qrcode)
+library(rvest)
+library(xml2)
+```
+
+------------------------------------------------------------------------
+
+## About today
+
+-   Focus on more advanced web scraping techniques
+-   Learn to handle dynamic content and browser automation
+-   Manage files and schedule scraping jobs
+-   Understand scraping challenges (CAPTCHAs, rate limits, proxies)
+-   Discuss ethics and legal aspects
+-   Hands-on projects
+
+
+------------------------------------------------------------------------
+
+## Dynamic Content on Websites
+
+-   Many websites use JavaScript to load data after the initial HTML is loaded
+-   Standard tools like `rvest` only see the initial HTML
+-   Data may be loaded via AJAX, appear after clicks, or require scrolling
+
+------------------------------------------------------------------------
+
+
+## RSelenium: Automate your browser
+
+-   RSelenium lets you control a real browser from R
+-   You can click, scroll, fill forms, and extract data after JavaScript runs
+-   Works with Chrome, Firefox, Edge, etc.
+-   Useful for scraping sites that require interaction or authentication
+
+::: columns
+::: {.column width="40%"}
+```{r rselenium-qr}
+qr_code("https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf") %>% plot
+```
+[https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf](https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf)
+:::
+::: {.column width="30%"}
+![](images/rselenium.png){width=50%}
+:::
+:::
+
+
+------------------------------------------------------------------------
+
+## RSelenium: Basic workflow
+
+```{r echo=T,eval=FALSE, rselenium-basic}
+library(RSelenium)
+# Start a Selenium server and browser
+rD <- rsDriver(browser = "chrome")
+remDr <- rD$client
+
+# Navigate to a page
+remDr$navigate("https://example.com")
+
+# Find an element and click it
+button <- remDr$findElement(using = "css selector", value = ".my-button")
+button$clickElement()
+
+# Extract page source after JS loads
+html <- remDr$getPageSource()[[1]]
+
+remDr$close()
+rD$server$stop()
+```
+
+
+------------------------------------------------------------------------
+
+# Exercise 4: RSelenium
+
+------------------------------------------------------------------------
+
+## Inspecting network activity
+
+-   Use browser dev tools to inspect network requests
+-   Often you can recreate browser behavior instead of using RSelenium
+-   Example: Find the JSON endpoint behind a table or chart
+
+------------------------------------------------------------------------
+
+## HTTP requests and the httr package
+
+-   Many websites and APIs require you to send HTTP requests directly
+-   `httr` is an R package for working with HTTP (GET, POST, PUT, DELETE, etc.)
+-   Lets you set headers, send data, handle cookies, and parse responses
+-   Useful for simulating browser requests
+
+------------------------------------------------------------------------
+
+## HTTP basics: GET vs. POST
+
+-   **GET**: Retrieve data from a URL (parameters in the URL)
+-   **POST**: Send data to a server (parameters in the request body)
+-   Many APIs require POST for search, login, or data submission
+
+------------------------------------------------------------------------
+
+## Example: GET request with httr
+
+```{r httr-get, eval=FALSE, echo=T}
+library(httr)
+# Simple GET request
+resp <- GET("https://httpbin.org/get")
+content(resp)
+
+# GET with query parameters
+resp <- GET("https://httpbin.org/get", query = list(name = "Cornelius", course = "webscraping"))
+content(resp)
+```
+
+------------------------------------------------------------------------
+
+## Example: POST request with httr
+
+```{r httr-post, eval=FALSE}
+# POST request with form data
+resp <- POST("https://httpbin.org/post", body = list(username = "user", password = "pass"), encode = "form")
+content(resp)
+
+# POST request with JSON body
+resp <- POST(
+  "https://httpbin.org/post",
+  body = list(a = 1, b = 2),
+  encode = "json"
+)
+content(resp)
+```
+
+------------------------------------------------------------------------
+
+## Custom headers, authentication, and cookies
+
+-   Some sites require custom headers (e.g., User-Agent, Referer)
+-   Use `add_headers()` to set them
+-   Handle cookies with `set_cookies()`
+-   Use `authenticate()` for basic HTTP authentication
+
+```{r httr-headers, eval=FALSE}
+# Custom User-Agent
+resp <- GET("https://httpbin.org/headers", add_headers(`User-Agent` = "MyScraper/1.0"))
+content(resp)
+
+# Cookies
+resp <- GET("https://httpbin.org/cookies/set?cookie1=value1", set_cookies(cookie1 = "value1"))
+content(resp)
+```
+
+------------------------------------------------------------------------
+
+## Working with cookies in httr
+
+-   **Cookies** are small pieces of data stored by the browser to remember your session (e.g., after login)
+-   Many sites require cookies to keep you logged in or to track your activity
+-   In `httr`, you can set cookies with `set_cookies()` and read cookies from responses
+-   To persist cookies across multiple requests, use a `handle`
+
+
+------------------------------------------------------------------------
+
+## Working with cookies in httr
+
+```{r httr-cookies, eval=FALSE, echo=T}
+library(httr)
+# Set a cookie in your request
+resp <- GET("https://httpbin.org/cookies", set_cookies(mycookie = "cookievalue"))
+content(resp)
+
+# Read cookies from a response
+cookies <- cookies(resp)
+cookies
+
+# Persist cookies across requests using a handle
+h <- handle("https://httpbin.org")
+GET(handle = h, path = "/cookies/set?cookie1=value1")
+GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
+```
+
+
+------------------------------------------------------------------------
+
+## Parsing JSON and working with responses
+
+-   Most APIs return JSON
+-   Use `content(resp, as = "parsed")` to get a list/data frame
+-   Use `jsonlite::fromJSON()` for more control
+
+```{r httr-json, eval=FALSE, echo=T}
+library(jsonlite)
+resp <- GET("https://api.github.com/repos/tidyverse/ggplot2")
+data <- content(resp, as = "parsed")
+# Or:
+data <- fromJSON(content(resp, as = "text"))
+data$name  # "ggplot2"
+```
+
+------------------------------------------------------------------------
+
+## Debugging and inspecting requests
+
+-   Use `verbose()` to see the full request/response
+-   Inspect status codes: `status_code(resp)`
+-   Check headers: `headers(resp)`
+
+------------------------------------------------------------------------
+
+## When to use httr vs. RSelenium
+
+-   Use `httr` for APIs, or simple HTTP requests
+-   Use RSelenium for sites that require full browser automation (JS, logins, complex interactions)
+-   Often, you can use browser dev tools to find the real API and use `httr` instead of RSelenium (faster, more robust)
+
+------------------------------------------------------------------------
+
+# Exercise 5: httr
+
+------------------------------------------------------------------------
+
+## File management for scraping projects
+
+-   Organize your downloads in folders
+-   Use `dir.create()` and `list.files()` to manage files
+-   Save raw HTMLs, processed data, and logs separately
+-   Example:
+
+```{r file-mgmt, eval=FALSE, echo=T}
+if (!dir.exists("data/html")) dir.create("data/html", recursive = TRUE)
+writeLines("<html>...</html>", "data/html/page1.html")
+files <- list.files("data/html", full.names = TRUE)
+```
+
+------------------------------------------------------------------------
+
+## Scheduled scraping: Automate your scripts
+
+-   Use cron jobs (Linux/macOS) or Task Scheduler (Windows) to run R scripts automatically
+-   R package: `taskscheduleR` (Windows)
+-   Example cron job (run every day at 2am):
+
+```
+0 2 * * * Rscript /path/to/your_script.R
+```
+
+-   Use `tryCatch` in R to handle errors and keep your script running
+
+```{r trycatch, eval=FALSE,echo=T}
+tryCatch({
+  # Your scraping code
+}, error = function(e) {
+  cat("Error:", e$message, "\n", file = "scrape.log", append = TRUE)
+})
+```
+
+------------------------------------------------------------------------
+
+## Scheduling scraping scripts remotely
+
+-   **Why schedule remotely?**
+    - Your script runs even when your laptop is off
+    - More reliable, scalable, and can run on a schedule (e.g., every night)
+    - Useful for long-running or regular scraping tasks
+
+-   **Requirements:**
+    - Access to a remote server (cloud VM, university server, Raspberry Pi, etc.)
+    - Ability to install R and all required packages
+    - For browser automation: ability to run a browser or headless browser (e.g., Chrome headless, Selenium server)
+    - (Recommended) Use Docker to package your environment for reproducibility
+
+-   **What is Docker?**
+    - Docker "containerizes" your code and all its dependencies
+    - Ensures your script runs the same everywhere (laptop, server, cloud)
+    - Makes deployment and updates easier
+
+-   **Scheduling options:**
+    - Linux: `cron` jobs
+    - Windows: Task Scheduler
+    - Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.
+
+    ------------------------------------------------------------------------
+
+
+-   **Example: Simple Dockerfile for an R scraping script**
+
+```Dockerfile
+FROM rocker/r-ver:4.3.1
+RUN install2.r --error rvest httr RSelenium tidyverse
+COPY myscript.R /myscript.R
+CMD ["Rscript", "/myscript.R"]
+```
+
+-   Build and run with:
+    - `docker build -t my-scraper .`
+    - `docker run my-scraper`
+
+-   **Challenges:**
+    - Need to manage credentials securely (API keys, passwords)
+    - Need to handle errors, logging, and notifications
+    - More technical knowledge required (command line, server setup, Docker basics)
+    - For browser automation, may need to run Selenium in a separate container (see Selenium Docker images)
+
+-   **Tip:** Start simple (local cron job), then move to Docker/cloud as your needs grow!
+
+------------------------------------------------------------------------
+
+## Scraping challenges: CAPTCHAs, rate limits, sessions, proxies
+
+-   CAPTCHAs: Hard to bypass, look for alternative data sources or APIs
+-   Rate limits: Add `Sys.sleep()` between requests, randomize intervals
+-   Session IDs: Use cookies, headers, or RSelenium to maintain sessions
+-   Proxies: Use proxy servers to rotate IPs (see `httr::use_proxy()` or RSelenium proxy settings)
+
+
+------------------------------------------------------------------------
+
+## Ethics and legal aspects: What you need to know
+
+-   Always check the website's terms of service
+-   Respect robots.txt `robotstxt`
+-   Avoid overloading servers (be polite!)
+-   GDPR and privacy: Don't collect personal data without consent
+-   Copyright: Don't redistribute scraped content without permission
+-   Consider adding your contact details in the User-Agent header
+-   When in doubt, ask for permission or use official APIs
+
+------------------------------------------------------------------------
+
+## Example: robots.txt
+
+-   Check `https://example.com/robots.txt` for scraping rules
+-   Use `robotstxt` R package to check permissions
+
+```{r robotstxt, eval=FALSE,echo=T}
+library(robotstxt)
+paths_allowed("https://example.com/path")
+```
+
+------------------------------------------------------------------------
+
+## Using ChatGPT (or LLMs) for web scraping
+
+-   **How LLMs can help:**
+    - Generate R code for scraping (rvest, httr, RSelenium, etc.)
+    - Suggest CSS selectors or regular expressions for extracting data
+    - Explain error messages and help debug code
+    - Summarize, clean, or transform scraped data
+    - Brainstorm strategies for scraping tricky or dynamic sites
+    - Provide documentation links and learning resources
+
+-   **Limitations and challenges:**
+    - May suggest code that doesn't work or is outdated ("hallucination")
+
+-   **Best practices:**
+    - Always test and review generated code before running
+    - Use LLMs as a coding assistant, not a replacement for understanding
+    - Combine LLM suggestions with browser dev tools and official documentation
+    - Ask for explanations, not just code
+
+------------------------------------------------------------------------
+
+## Outlook: What else?
+
+-   OCR: Extract text from images and PDFs (`tesseract`, `pdftools`)
+-   Regular expressions: Clean and extract data from messy text
+-   Images as data: Download and analyze images
+-   Geocoding: Convert addresses to coordinates (`tidygeocoder`)
+-   Crawling: `firecrawl`, `crawlR`
+
+------------------------------------------------------------------------
+
+# Exercise 6: Hands-on Project
+
+------------------------------------------------------------------------
+

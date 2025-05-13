@@ -1,4 +1,4 @@
-# 06-apis-json-exercise
+# apis-json-exercise
 # For a research project about the role of the media, you need some data about
 # news articles. Fortunately, the NY Times provides several APIs to provide the data
 # you need.

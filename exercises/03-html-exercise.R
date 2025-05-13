@@ -1,4 +1,4 @@
-# 03-html - exercise
+# html - exercise
 
 # 1. Go to the website of the Parliament of Australia
 
@@ -20,6 +20,6 @@
 
 # 10. Create a data.frame with two columns, the link/href from above and the the name/text from above. Store the data.frame in an object.
 
-# 11. Try finding a CSS path for the party of the members on the page.
+# 11. Try finding a CSS path for the party of the members on the page. (It might not be possible.)
 
 # 12. How would you add the party of members to your dataset?

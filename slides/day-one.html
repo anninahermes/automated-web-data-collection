@@ -189,6 +189,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="day-one_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="day-one_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="day-one_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -207,41 +210,79 @@ Cornelius Erfort
 
   <p class="date">May 16, 2025</p>
 </section>
-<section id="about-the-instructor" class="slide level2">
-<h2>About the Instructor <span class="emoji" data-emoji="wave">👋</span></h2>
+<section id="about-me" class="slide level2">
+<h2>About me <span class="emoji" data-emoji="wave">👋</span></h2>
 <ul>
 <li>Post-doctoral Researcher at Witten/Herdecke University</li>
-<li>Focus on political science and data collection methods</li>
+<li>Focus on computational social science and political behavior</li>
 </ul>
+</section>
+<section id="about-you" class="slide level2">
+<h2>About you</h2>
+<p><img src="images/programming.png" class="fragment replace"> <img src="images/experience.png" class="fragment replace"> <img src="images/ai.png" class="fragment replace"> <img src="images/content.png" class="fragment replace"> <img src="images/goals.png" class="fragment replace"> <img src="images/format.png" class="fragment replace"> <img src="images/interaction.png" class="fragment replace"></p>
 </section>
 <section id="why-web-scraping" class="slide level2">
 <h2>Why Web Scraping?</h2>
 <ul>
 <li>Access to unique and innovative data sources</li>
+<li>Large amounts of data openly accessible</li>
 <li>Complementing traditional research methods</li>
+</ul>
+</section>
+<section id="workshop-goals" class="slide level2">
+<h2>Workshop Goals</h2>
+<ul>
+<li>Basics of web scraping</li>
+<li>Explore different methods of webscraping</li>
+<li>Learn about practical applications of web scraping</li>
 </ul>
 </section>
 <section id="organizational-points" class="slide level2">
 <h2>Organizational Points</h2>
 <ul>
 <li>Workshop logistics and expectations</li>
-<li>Resources and support</li>
+<li>Github</li>
 </ul>
+
+<img data-src="day-one_files/figure-revealjs/github-1.png" width="960" class="r-stretch"><p><a href="https://github.com/cornelius-erfort/automated-web-data-collection" class="uri">https://github.com/cornelius-erfort/automated-web-data-collection</a></p>
 </section>
-<section id="questions" class="slide level2">
-<h2>Questions</h2>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Munzert, S., Rubba, C., Meißner, P., &amp; Nyhuis, D. (2014). <em>Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining</em>. Wiley.</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="day-one_files/figure-revealjs/munzert-qr-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817">https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817</a></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/munzert.jpg" style="width:90.0%"></p>
+</div></div>
 </section>
-<section id="presentations-and-projects" class="slide level2">
-<h2>Presentations and Projects</h2>
-<ul>
-<li>Schedule and expectations for student presentations</li>
-</ul>
-</section>
-<section id="research-collaboration-tools" class="slide level2">
-<h2>Research Collaboration Tools</h2>
-<ul>
-<li>Introduction to tools like Posit Cloud for collaborative research</li>
-</ul>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong>Wickham, H., &amp; Grolemund, G. (2023). <em>R for Data Science (2nd Edition)</em>. O’Reilly Media.</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="day-one_files/figure-revealjs/wickham-qr-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/wickham.jpg" style="width:90.0%"></p>
+</div></div>
 </section>
 <section id="overview-of-the-workshop" class="slide level2">
 <h2>Overview of the workshop</h2>
@@ -267,6 +308,46 @@ Cornelius Erfort
 </ul></li>
 </ul>
 </section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
+<ul>
+<li>Feel free to interrupt at any point</li>
+</ul>
+</section>
+<section id="web-scraping-ideas-easy" class="slide level2">
+<h2>Web Scraping Ideas: Easy</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Wikipedia</a> (useful for networks etc.)</li>
+<li><a href="https://www.spd.de/presse/pressemitteilungen/">Parties’ press releases</a> (Some parties are very difficult)</li>
+<li><a href="https://www.wahlrecht.de/umfragen/">Polls (wahlrecht.de)</a></li>
+<li><a href="https://epsaweb.org/annual-conference/">Conference programs (EPSA, DVPW)</a></li>
+<li><a href="https://www.abgeordnetenwatch.de/">Abgeordnetenwatch.de (questions and answers from candidates)</a></li>
+<li><a href="https://www.lobbyregister.bundestag.de/">German Lobby Register</a> (can get very complex)</li>
+<li><a href="https://duckduckgo.com/">Web Search Results (DuckDuckGo)</a></li>
+<li><a href="https://www.nytimes.com/section/world">News articles</a></li>
+</ul>
+</section>
+<section id="web-scraping-ideas-medium" class="slide level2">
+<h2>Web Scraping Ideas: Medium</h2>
+<ul>
+<li><a href="https://info.nec.go.kr/">Korean election results (backend, JSON)</a></li>
+<li><a href="https://www.bundestag.de/protokolle">Parliamentary protocols (sometimes as documents or PDFs)</a></li>
+<li><a href="https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html">US live election data from the New York Times (JSON backend)</a></li>
+<li><a href="https://www.politico.com/interactives/2024/president-election-polls/">Polls (Politico JSON)</a></li>
+<li><a href="https://www.doctolib.de/">Doctolib appointment availability (JSON)</a></li>
+<li><a href="https://dip.bundestag.de/">List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)</a></li>
+<li><a href="https://treuhandanstalt.online/karte/">Privatization of state owned companies (Treuhand) map</a></li>
+</ul>
+</section>
+<section id="web-scraping-ideas-difficult" class="slide level2">
+<h2>Web Scraping Ideas: Difficult</h2>
+<ul>
+<li>German Members of Parliament (MPs) websites (parallel scraping/crawling)</li>
+<li><a href="https://pypi.org/project/linkedin-scraper/">LinkedIn profiles (Python library)</a></li>
+<li><a href="https://waqi.info/#/c/3.563/8.145/2.2z">Air quality sensor data worldwide (encrypted via JavaScript)</a></li>
+<li><a href="https://dataforsyningen.dk/data/4840">Historic shapefiles for Danish parishes</a></li>
+</ul>
+</section>
 <section class="slide level2">
 
 </section>
@@ -279,7 +360,12 @@ Cornelius Erfort
 <h2>HTML</h2>
 <ul>
 <li>HyperText Markup Language</li>
-<li>Helps us find the information we want</li>
+<li>Building blocks of most websites</li>
+<li>Defines the structure and content of a webpage#</li>
+<li>Uses tags to define elements (e.g.&nbsp;headings, paragraphs, links, images)</li>
+<li>Tags are enclosed in angle brackets (e.g.&nbsp;<code>&lt;tagname&gt;content&lt;/tagname&gt;</code>)</li>
+<li>Tags can have attributes (e.g.&nbsp;<code>&lt;img src="image.jpg" alt="description"&gt;</code>)</li>
+<li>Also helps us find the information we want!</li>
 </ul>
 </section>
 <section id="html-syntax" class="slide level2">
@@ -299,6 +385,18 @@ Cornelius Erfort
 </section>
 <section id="css" class="slide level2">
 <h2>CSS</h2>
+<ul>
+<li>Cascading Style Sheets</li>
+<li>Used to style HTML elements</li>
+<li>Defines how HTML elements should be displayed on the screen</li>
+<li>Can be used to change colors, fonts, layouts, and more</li>
+<li>CSS rules consist of selectors and declarations</li>
+<li>Selectors target HTML elements, and declarations define the styles to be applied</li>
+<li>Also helps us find the information we want!</li>
+</ul>
+</section>
+<section id="using-css-in-html" class="slide level2">
+<h2>Using CSS in HTML</h2>
 <div class="fragment">
 <div class="sourceCode" id="cb2" data-code-line-numbers="3|7|8|10"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
 <span id="cb2-2"><a href=""></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
@@ -314,6 +412,28 @@ Cornelius Erfort
 <span id="cb2-12"><a href=""></a></span>
 <span id="cb2-13"><a href=""></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="css-syntax" class="slide level2">
+<h2>CSS Syntax</h2>
+<div class="sourceCode" id="cb3" data-code-line-numbers="1-4|6-9|11-14|16-19"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href=""></a>h1 {</span>
+<span id="cb3-2"><a href=""></a>  color: blue;</span>
+<span id="cb3-3"><a href=""></a>  font-size: 24px;</span>
+<span id="cb3-4"><a href=""></a>}</span>
+<span id="cb3-5"><a href=""></a></span>
+<span id="cb3-6"><a href=""></a>div p {</span>
+<span id="cb3-7"><a href=""></a>  color: red;</span>
+<span id="cb3-8"><a href=""></a>  font-size: 20px;</span>
+<span id="cb3-9"><a href=""></a>}</span>
+<span id="cb3-10"><a href=""></a></span>
+<span id="cb3-11"><a href=""></a>.important-link {</span>
+<span id="cb3-12"><a href=""></a>  color: green;</span>
+<span id="cb3-13"><a href=""></a>  font-size: 18px;</span>
+<span id="cb3-14"><a href=""></a>}</span>
+<span id="cb3-15"><a href=""></a></span>
+<span id="cb3-16"><a href=""></a>#twitter {</span>
+<span id="cb3-17"><a href=""></a>  color: orange;</span>
+<span id="cb3-18"><a href=""></a>  font-size: 16px;</span>
+<span id="cb3-19"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="css-path" class="slide level2">
 <h2>CSS path</h2>
@@ -336,6 +456,11 @@ Cornelius Erfort
 </ul>
 </div>
 </section>
+<section id="css-diner" class="slide level2">
+<h2>CSS Diner</h2>
+
+<img data-src="day-one_files/figure-revealjs/css-1.png" width="960" class="r-stretch"><p><a href="https://flukeout.github.io/" class="uri">https://flukeout.github.io/</a></p>
+</section>
 <section id="view-the-source-code-in-the-browser" class="slide level2">
 <h2>View the source code in the browser</h2>
 <p><a href="https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html">MPs from the 17th Bundestag</a>, CSS path: <code>.linkIntern</code></p>
@@ -350,15 +475,8 @@ Cornelius Erfort
 </section>
 <section id="selector-gadget" class="slide level2">
 <h2>Selector Gadget</h2>
-<p><a href="https://webarchiv.bundestag.de/archive/2013/1212/bundestag/abgeordnete17/alphabet/index.html">MPs from the 17th Bundestag</a>, CSS path: <code>.linkIntern</code></p>
-<p><a href="https://en.wikipedia.org/wiki/List_of_political_scientists">Political scientists on Wikipedia</a>, CSS path: <code>h2+ ul li &gt; a:nth-child(1)</code></p>
-</section>
-<section id="css-diner" class="slide level2">
-<h2>CSS Diner</h2>
 
-<img data-src="day-one_files/figure-revealjs/css-1.png" width="960" class="r-stretch"></section>
-<section id="httpsflukeout.github.io" class="slide level2">
-<h2><a href="https://flukeout.github.io/" class="uri">https://flukeout.github.io/</a></h2>
+<img data-src="day-one_files/figure-revealjs/selector-1.png" width="960" class="r-stretch"><p><a href="https://selectorgadget.com" class="uri">https://selectorgadget.com</a></p>
 </section>
 <section id="package-xml2" class="slide level2">
 <h2>Package <code>xml2</code></h2>
@@ -394,28 +512,368 @@ Cornelius Erfort
 </section>
 <section class="slide level2">
 
+</section></section>
+<section>
+<section id="exercise-1-html" class="title-slide slide level1 center">
+<h1>Exercise 1: HTML</h1>
+
 </section>
 <section class="slide level2">
 
 </section></section>
-<section>
 <section id="web-scraping" class="title-slide slide level1 center">
-<h1>Web Scraping</h1>
+<h1>Web scraping</h1>
+<p>What we did so far:</p>
 <ul>
-<li>Introduction to web scraping tools in R</li>
-<li>Practical exercises in scraping political websites and news articles</li>
+<li>Download single HTML</li>
+<li>Extract data from HTML</li>
+</ul>
+<p>But:</p>
+<ul>
+<li>Data is often on multiple pages</li>
+</ul>
+</section>
+
+<section>
+<section id="basic-web-scraping-workflow" class="title-slide slide level1 center">
+<h1>Basic web scraping workflow</h1>
+<p>First step</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(URL)-- "read_html(URL)" --&gt; B(HTML file)
+  B -- "rvest/regex" --&gt; C(Data)
+  B -- "rvest" --&gt; D(list of URLs)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>or</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A(URL)-- "manually" --&gt; B(URL pattern)
+  B -- "str_c(URL, pattern)" --&gt; C(list of URLs)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="manipulating-urls" class="slide level2">
+<h2>Manipulating URLs</h2>
+<ul>
+<li>Often, the URLs for the HTMLs we need follow a pattern:</li>
+</ul>
+<p><code>https:///website.com/page/1</code>, <code>https:///website.com/page/2</code>, …</p>
+<ul>
+<li>We can use <code>stringr</code> to create a vector of URLs we want to download.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">str_c</span>(<span class="st">"https:///website.com/page/"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "https:///website.com/page/1"  "https:///website.com/page/2" 
+ [3] "https:///website.com/page/3"  "https:///website.com/page/4" 
+ [5] "https:///website.com/page/5"  "https:///website.com/page/6" 
+ [7] "https:///website.com/page/7"  "https:///website.com/page/8" 
+ [9] "https:///website.com/page/9"  "https:///website.com/page/10"</code></pre>
+</div>
+</div>
+</section>
+<section id="manipulating-urls-1" class="slide level2">
+<h2>Manipulating URLs</h2>
+
+<img data-src="day-one_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"><p><a href="https://labour.org.uk/category/latest/press-release" class="uri">https://labour.org.uk/category/latest/press-release</a></p>
+</section>
+<section id="collecting-links-from-html" class="slide level2">
+<h2>Collecting links from HTML</h2>
+<ul>
+<li>We can use <code>rvest</code> to extract links from HTMLs (href attribute)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://labour.org.uk/category/latest/press-release"</span>)</span>
+<span id="cb6-2"><a href=""></a>myelements <span class="ot">&lt;-</span> <span class="fu">html_elements</span>(myhtml, <span class="st">".post-preview-compact__link"</span>)</span>
+<span id="cb6-3"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">html_attr</span>(myelements, <span class="st">"href"</span>)</span>
+<span id="cb6-4"><a href=""></a>links <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"https://labour.org.uk"</span>, links)</span>
+<span id="cb6-5"><a href=""></a><span class="fu">head</span>(links, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "https://labour.org.uk/updates/press-releases/liz-kendall-speech-at-labour-party-conference-2024/"       
+[2] "https://labour.org.uk/updates/press-releases/bridget-phillipson-speech-at-labour-party-conference-2024/"
+[3] "https://labour.org.uk/updates/press-releases/wes-streeting-speech-at-labour-party-conference-2024/"     
+[4] "https://labour.org.uk/updates/press-releases/keir-starmer-speech-at-labour-party-conference-2024/"      
+[5] "https://labour.org.uk/updates/press-releases/lisa-nandy-speech-at-labour-party-conference-2024/"        </code></pre>
+</div>
+</div>
+</section>
+<section id="how-do-we-download-multiple-htmls" class="slide level2">
+<h2>How do we download multiple HTMLs?</h2>
+<ul>
+<li>For loop</li>
+<li>(<code>sapply()</code>)</li>
+<li>(While loop)</li>
+</ul>
+</section>
+<section id="for-loop" class="slide level2">
+<h2>For loop</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb8-2"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> vector) {</span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">print</span>(element)  </span>
+<span id="cb8-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>)) {</span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">print</span>(element)  </span>
+<span id="cb9-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "one"
+[1] "two"
+[1] "three"</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="for-loop-1" class="slide level2">
+<h2>For loop</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"labour"</span>)) <span class="fu">dir.create</span>(<span class="st">"labour"</span>)</span>
+<span id="cb11-2"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> <span class="fu">head</span>(links)) {</span>
+<span id="cb11-3"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"labour/"</span>, <span class="fu">basename</span>(link), <span class="st">".html"</span>)</span>
+<span id="cb11-4"><a href=""></a>  <span class="cf">if</span>(<span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
+<span id="cb11-5"><a href=""></a>  <span class="fu">print</span>(filename)</span>
+<span id="cb11-6"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
+<span id="cb11-7"><a href=""></a>  <span class="fu">write_html</span>(myhtml, <span class="at">file =</span> filename)</span>
+<span id="cb11-8"><a href=""></a>  <span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
+<span id="cb11-9"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pause-r" class="slide level2">
+<h2>Pause R</h2>
+<p>For loops create a lot of traffic:</p>
+<ul>
+<li><code>Sys.sleep(seconds)</code> pauses R for the specified time</li>
+<li>Be polite and pause for one or two seconds</li>
+</ul>
+</section>
+<section id="manage-files" class="slide level2">
+<h2>Manage files</h2>
+<ul>
+<li>The number of HTMLs can grow really fast.</li>
+<li>We don’t want to start from the beginning with every error.</li>
+<li>Best practice: Save HTMLs to a local folder.</li>
+</ul>
+</section>
+<section id="manage-files-1" class="slide level2">
+<h2>Manage files</h2>
+<ul>
+<li><code>list.files(folder, full.names = TRUE)</code> returns a vector with all files (and folders in the folder)</li>
+<li><code>file.exists(file)</code> returns TRUE when the file exists, otherwise FALSE</li>
+<li><code>dir.create(folder)</code>creates the folder</li>
+<li><code>dir.exists(folder)</code>returns TRUE when the folder exists, otherwise FALSE</li>
+</ul>
+</section>
+<section id="manage-files-2" class="slide level2">
+<h2>Manage files</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="cf">for</span> (link <span class="cf">in</span> links) {</span>
+<span id="cb12-2"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">basename</span>(link)</span>
+<span id="cb12-3"><a href=""></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(filename)) <span class="cf">next</span></span>
+<span id="cb12-4"><a href=""></a>  myhtml <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
+<span id="cb12-5"><a href=""></a>  <span class="co"># ...</span></span>
+<span id="cb12-6"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="useful-functions" class="slide level2">
+<h2>Useful functions</h2>
+<ul>
+<li><code>if(condition) expression</code>, if condition: only runs expression if condition is TRUE</li>
+<li><code>!</code> Logical NOT operator`, inverts a logical (<code>TRUE</code> -&gt; <code>FALSE</code>, <code>FALSE</code> -&gt; <code>TRUE</code>)</li>
+<li><code>vector_1 %in% vector_2</code> operator to check whether the elements from vector_1 are in vector_2</li>
 </ul>
 </section>
 <section class="slide level2">
 
 </section></section>
 <section>
-<section id="apis-and-data-formats" class="title-slide slide level1 center">
-<h1>APIs and Data Formats</h1>
+<section id="exercise-2-web-scraping" class="title-slide slide level1 center">
+<h1>Exercise 2: Web Scraping</h1>
+
+</section>
+<section id="apis" class="slide level2">
+<h2>APIs</h2>
 <ul>
-<li>Accessing structured data via APIs</li>
-<li>Handling different data formats (JSON, XML, CSV) in R</li>
+<li>Webscraping often uses the user interface (e.g.&nbsp;HTML)</li>
+<li>But websites often provide data in more efficient ways</li>
+<li>Application Programming Interfaces</li>
+<li>(“Hidden” APIs)</li>
 </ul>
+</section>
+<section id="apis-1" class="slide level2">
+<h2>APIs</h2>
+<ul>
+<li>Standardized way to request data</li>
+<li>API returns only the requested data</li>
+<li>Some APIs are free</li>
+<li>Some APIs require authentication</li>
+</ul>
+</section>
+<section id="api-example" class="slide level2">
+<h2>API example</h2>
+<p><a href="https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m" class="uri">https://archive-api.open-meteo.com/v1/archive?latitude=54.09&amp;longitude=12.14&amp;start_date=2020-05-16&amp;end_date=2020-05-17&amp;hourly=temperature_2m</a></p>
+<div class="sourceCode" id="cb13" data-code-line-numbers="|1-2|12-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href=""></a>{"latitude":54.100006,</span>
+<span id="cb13-2"><a href=""></a>"longitude":12.100006,</span>
+<span id="cb13-3"><a href=""></a>"generationtime_ms":0.27310848236083984,</span>
+<span id="cb13-4"><a href=""></a>"utc_offset_seconds":0,</span>
+<span id="cb13-5"><a href=""></a>"timezone":"GMT",</span>
+<span id="cb13-6"><a href=""></a>"timezone_abbreviation":"GMT",</span>
+<span id="cb13-7"><a href=""></a>"elevation":13.0,</span>
+<span id="cb13-8"><a href=""></a>"daily_units":</span>
+<span id="cb13-9"><a href=""></a>  {"time":"iso8601",</span>
+<span id="cb13-10"><a href=""></a>  "temperature_2m_max":"°C"},</span>
+<span id="cb13-11"><a href=""></a>"daily":</span>
+<span id="cb13-12"><a href=""></a>  {"time":</span>
+<span id="cb13-13"><a href=""></a>      ["2020-05-16","2020-05-17","2020-05-18","2020-05-19","2020-05-20"],</span>
+<span id="cb13-14"><a href=""></a>  "temperature_2m_max":</span>
+<span id="cb13-15"><a href=""></a>      [14.0,16.4,13.6,16.0,15.1]}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="apis-more-examples" class="slide level2">
+<h2>APIs more examples</h2>
+<ul>
+<li>Geographic coordinates</li>
+<li>Twitter data</li>
+<li>Uber price estimation</li>
+</ul>
+</section>
+<section id="apis-more-examples-1" class="slide level2">
+<h2>APIs more examples</h2>
+<p>List of free APIs</p>
+
+<img data-src="day-one_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><p><a href="https://github.com/public-apis/public-apis" class="uri">https://github.com/public-apis/public-apis</a></p>
+</section>
+<section id="r-packages-for-apis" class="slide level2">
+<h2>R packages for APIs</h2>
+<ul>
+<li>Often R packages make it easier to use APIs in R</li>
+</ul>
+<p>List of R packages</p>
+
+<img data-src="day-one_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><p><a href="https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md" class="uri">https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md</a></p>
+</section>
+<section id="r-packages-for-apis-1" class="slide level2">
+<h2>R packages for APIs</h2>
+<ul>
+<li><code>rtweet</code> package to access Twitter API</li>
+<li>Twitter API requires authentication</li>
+</ul>
+</section>
+<section id="file-formats" class="slide level2">
+<h2>File formats</h2>
+<p>Which file formats do we need to know?</p>
+<div class="fragment">
+<ul>
+<li>XML <code>xml2::read_xml()</code></li>
+<li>CSV <code>readr::read_csv()</code></li>
+<li>XLSX <code>openxlsx::read.xlsx()</code></li>
+<li>JSON</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Next week:</p>
+<ul>
+<li>PDF</li>
+<li>JPG etc.</li>
+</ul>
+</div>
+</section>
+<section id="json" class="slide level2">
+<h2>JSON</h2>
+<ul>
+<li>Data are stored in key-value pairs: <code>{"key": "value"}</code></li>
+<li>JSON is hierarchical, unlike tables/dataframes</li>
+<li>Curly brackets <code>{}</code> define objects</li>
+<li>Square brackets <code>[]</code> define arrays (ordered sequence/list of values)</li>
+</ul>
+</section>
+<section id="json-1" class="slide level2">
+<h2>JSON</h2>
+<div class="sourceCode" id="cb14" data-code-line-numbers="|1-12|3|5-8|9|13-15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href=""></a>{"indy movies" :[</span>
+<span id="cb14-2"><a href=""></a>  {</span>
+<span id="cb14-3"><a href=""></a>  "name" : "Raiders of the Lost Ark",</span>
+<span id="cb14-4"><a href=""></a>  "year" : 1981,</span>
+<span id="cb14-5"><a href=""></a>  "actors" : {</span>
+<span id="cb14-6"><a href=""></a>      "Indiana Jones": "Harrison Ford",</span>
+<span id="cb14-7"><a href=""></a>      "Dr. Rene Belloq": "Paul Freeman"</span>
+<span id="cb14-8"><a href=""></a>    },</span>
+<span id="cb14-9"><a href=""></a>  "producers": ["Frank Marshall", "George Lucas", "Howard Kazanjian"],</span>
+<span id="cb14-10"><a href=""></a>  "budget" : 18000000,</span>
+<span id="cb14-11"><a href=""></a>  "academy_award_ve": true</span>
+<span id="cb14-12"><a href=""></a>  },</span>
+<span id="cb14-13"><a href=""></a>{</span>
+<span id="cb14-14"><a href=""></a>"name" : "Another Movie"</span>
+<span id="cb14-15"><a href=""></a>}]</span>
+<span id="cb14-16"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="json-2" class="slide level2">
+<h2>JSON</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb15-2"><a href=""></a>json <span class="ot">&lt;-</span> <span class="st">'{"indy movies" :[</span></span>
+<span id="cb15-3"><a href=""></a><span class="st">  {"name" : "Raiders of the Lost Ark",</span></span>
+<span id="cb15-4"><a href=""></a><span class="st">  "year" : 1981,</span></span>
+<span id="cb15-5"><a href=""></a><span class="st">  "actors" : {</span></span>
+<span id="cb15-6"><a href=""></a><span class="st">      "Indiana Jones": "Harrison Ford",</span></span>
+<span id="cb15-7"><a href=""></a><span class="st">      "Dr. Rene Belloq": "Paul Freeman"}},</span></span>
+<span id="cb15-8"><a href=""></a><span class="st">{"name" : "Another Movie",</span></span>
+<span id="cb15-9"><a href=""></a><span class="st">"year" : 1999</span></span>
+<span id="cb15-10"><a href=""></a><span class="st">}]}'</span></span>
+<span id="cb15-11"><a href=""></a>  </span>
+<span id="cb15-12"><a href=""></a><span class="fu">fromJSON</span>(json)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`indy movies`
+                     name year actors.Indiana Jones actors.Dr. Rene Belloq
+1 Raiders of the Lost Ark 1981        Harrison Ford           Paul Freeman
+2           Another Movie 1999                 &lt;NA&gt;                   &lt;NA&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="hierarchical-data" class="slide level2">
+<h2>Hierarchical data</h2>
+<ul>
+<li>We usually work with rectangular data.</li>
+<li>How can we transform hierarchical data to rectangular?</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>add additional columns: <code>tidyr::unnest_wider()</code></li>
+<li>add additional rows: <code>tidyr::unnest_longer()</code></li>
+</ul>
+</div>
+</section>
+<section id="hierarchical-data-1" class="slide level2">
+<h2>Hierarchical data</h2>
+<ul>
+<li>Packages: <code>jsonlite</code> and <code>tidyr</code></li>
+<li><code>jsonlite::parse_json()</code></li>
+<li><code>jsonlite::fromJSON()</code></li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="exercise-3-apis-and-data-formats" class="title-slide slide level1 center">
+<h1>Exercise 3: APIs and Data Formats</h1>
+
 </section>
 <section class="slide level2">
 
@@ -429,7 +887,6 @@ Cornelius Erfort
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="hu.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>

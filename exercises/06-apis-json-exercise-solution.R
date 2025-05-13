@@ -1,8 +1,9 @@
-# 06-apis-json-exercise
+# apis-json-exercise
 
 library(stringr)
 library(jsonlite)
 library(dplyr)
+library(ggplot2)
 
 # For a research project about the role of the media, you need some data about
 # news articles. Fortunately, the NY Times provides several APIs to provide the data
@@ -23,10 +24,12 @@ apikey <- readLines("api-key-nyt.txt")
 apicall <- str_c("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=", apikey)
 
 # 7. Send the call to the API, and store it in an object.
+# GET(apicall) %>% content("text")
 apiresults <- fromJSON(apicall)
 
 # 8. Inspect the results. What types of data did the API give? How are they ordered?
 View(apiresults)
+as.data.frame(apiresults) %>% View
 
 # 9. Instead of "election", search for articles with "humboldt".
 apicall <- str_c("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=humboldt&api-key=", apikey)
@@ -90,18 +93,54 @@ for (i in 1:3) {
 ##    you can acquire by visiting the following URL:
 ##    https://developer.nytimes.com/signup
 
+# Remove any existing nytimes packages
+# remove.packages("nytimes")
+
 install.packages("devtools")
-devtools::install_github("mkearney/nytimes")
+devtools::install_github("news-r/nytimes")
 
 ## load nytimes package
 library(nytimes)
 
-## get http response objects for search about humboldt
-nytsearch <- nyt_search("humboldt", n = 30, apikey = apikey)
+## set API key
+Sys.setenv(NYTIMES_API_KEY = apikey)
 
-## convert response object to data frame
-nytsearchdf <- data.frame(nytsearch)
+## get articles about humboldt
+nytsearch <- ny_search("Germany", pages = 3)
+
+## convert response to data frame
+# Extract relevant fields from each article
+nytsearchdf <- lapply(nytsearch, function(article) {
+  data.frame(
+    headline = article$headline$main,
+    abstract = article$abstract,
+    pub_date = article$pub_date,
+    section = article$section_name,
+    url = article$web_url,
+    word_count = article$word_count,
+    stringsAsFactors = FALSE
+  )
+}) %>% bind_rows()
 
 ## preview data
 View(nytsearchdf)
 
+# Convert pub_date to Date format and create line plot
+nytsearchdf$pub_date <- as.Date(substr(nytsearchdf$pub_date, 1, 10))
+
+# Create monthly counts
+nytsearchdf %>%
+  mutate(month = format(pub_date, "%Y-%m")) %>%
+  count(month) %>%
+  mutate(month = as.Date(paste0(month, "-01"))) %>% 
+
+# Create line plot
+ggplot(aes(x = month, y = n)) +
+  geom_line() +
+  geom_point() +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+  labs(title = "Monthly Distribution of Election Articles",
+       x = "Date",
+       y = "Number of Articles") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
