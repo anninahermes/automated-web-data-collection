@@ -6,83 +6,30 @@ The internet is an essential source of data for social science research, providi
 
 ## Workshop Files (Latest Versions)
 
-- [Day 1 Slides (Quarto)](slides/day-one.qmd)
-- [Day 2 Slides (Quarto)](slides/day-two.qmd)
-- [Syllabus (LaTeX)](syllabus.tex)
-
-# Course Preparation
-
-• HTML basics (https://r4ds.hadley.nz/webscraping.html#html-basics)
-• CSS Diner (https://flukeout.github.io)
-• Install Selector Gadget (https://selectorgadget.com/)
-• 3 ideas for data collection projects (see below for examples)
-• R basics (if needed)
+- [Day 1 Slides (HTML)](slides/day-one.html)
+- [Day 2 Slides (HTML)](slides/day-two.html)
+- [Syllabus (PDF)](Workshop_Syllabus__Automated_Web_Data_Collection.pdf)
 
 # Course Outline Day 1
 
-## Overview
-
-## HTML and Web Structure
-
-• Understanding HTML and CSS
-
-• Extracting structured information from web pages (rvest)
-
-
-## Web Scraping
-
-• Introduction to rvest and other scraping tools in R
-
-• Practical exercises in scraping political websites and news articles
-
-
-## APIs and Data Formats (JSON, XML, CSV, etc.)
-
-• Accessing structured data via APIs
-
-• Handling different data formats in R
-
-## Exercises and hands-on projects
-
+- HTML and Web Structure: Basics of HTML and CSS, `rvest`
+  - HTML basics ([r4ds.hadley.nz/webscraping.html#html-basics](https://r4ds.hadley.nz/webscraping.html#html-basics))
+  - CSS Diner ([flukeout.github.io](https://flukeout.github.io))
+  - Selector Gadget ([selectorgadget.com](https://selectorgadget.com/))
+- Web Scraping: Introduction, practical exercises
+- APIs and Data Formats
+- Hands-on Project
 
 # Course Outline Day 2
 
-## Advanced Techniques 1
-
-• Dealing with dynamic content (JavaScript, AJAX)
-
-• RSelenium
-
-• Understanding webpage backends
-
-##  Advanced Techniques 2
-
-• File management
-
-• Scheduled scraping
-
-• Handling scraping challenges (CAPTCHAs, rate limits, session IDs, proxies)
-
-## Ethics and Legal Aspects of Web Data Collection
-
-• Best practices
-
-• Ethical considerations in data collection
-
-• Legal frameworks (copyright, GDPR, terms of service, etc.)
-
-## Outlook
-
-• OCR, PDFs
-• Regular expressions
-• Images as data
-• Text as data
-• Firecrawl
-• Geocoding and geodata
-• Existing packages for scraping and accesing APIs
-
-## Exercises and hands-on projects
-
+- Dynamic content, browser automation (`RSelenium`)
+- HTTP requests and APIs (`httr`)
+  - Custom headers, cookies, authentication
+  - When to use `httr` vs. RSelenium
+- File management, scheduling, challenges
+- Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks
+- Outlook
+- Hands-on Project
 
 # Textbooks
 
