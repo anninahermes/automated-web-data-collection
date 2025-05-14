@@ -4,6 +4,12 @@ Automated Web Data Collection
 
 The internet is an essential source of data for social science research, providing access to vast amounts of text and structured information. This course introduces students to methods for automated web data collection, focusing on practical applications in political science and other social sciences. Students will learn web scraping techniques, work with APIs, and process various data formats. Ethical and legal considerations will also be discussed.
 
+## Workshop Files (Latest Versions)
+
+- [Day 1 Slides (Quarto)](slides/day-one.qmd)
+- [Day 2 Slides (Quarto)](slides/day-two.qmd)
+- [Syllabus (LaTeX)](syllabus.tex)
+
 # Course Preparation
 
 • HTML basics (https://r4ds.hadley.nz/webscraping.html#html-basics)
