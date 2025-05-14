@@ -47,6 +47,8 @@ library(xml2)
 -   Standard tools like `rvest` only see the initial HTML
 -   Data may be loaded via AJAX, appear after clicks, or require scrolling
 
+% Example for dynamic website
+
 ------------------------------------------------------------------------
 
 
@@ -95,7 +97,9 @@ rD$server$stop()
 ```
 
 
-------------------------------------------------------------------------
+% Example for dynamic website: Demonstrate RSelenium
+
+% Install RSelenium
 
 # Exercise 4: RSelenium
 
@@ -106,6 +110,8 @@ rD$server$stop()
 -   Use browser dev tools to inspect network requests
 -   Often you can recreate browser behavior instead of using RSelenium
 -   Example: Find the JSON endpoint behind a table or chart
+
+% Example for dynamic website: Show HTTP request
 
 ------------------------------------------------------------------------
 
@@ -135,27 +141,66 @@ resp <- GET("https://httpbin.org/get")
 content(resp)
 
 # GET with query parameters
-resp <- GET("https://httpbin.org/get", query = list(name = "Cornelius", course = "webscraping"))
+resp <- GET("https://httpbin.org/get", query = list(name = "dynamics", course = "webscraping"))
 content(resp)
 ```
 
 ------------------------------------------------------------------------
 
-## Example: POST request with httr
+## GET requests and query parameters
 
-```{r httr-post, eval=FALSE}
-# POST request with form data
-resp <- POST("https://httpbin.org/post", body = list(username = "user", password = "pass"), encode = "form")
+-   Query parameters are added to a URL after a `?`
+-   Each parameter is a key-value pair: `key=value`
+-   Multiple parameters are separated by `&`
+-   Example:
+
+    `https://api.example.com/search?query=webscraping&lang=en&page=2`
+
+    - `query=webscraping` (search term)
+    - `lang=en` (language)
+    - `page=2` (page number)
+
+
+------------------------------------------------------------------------
+
+## Inspecting HTTP Responses
+
+- After making a request with `httr`, always check the response:
+    - **Status code:** Was the request successful?
+    - **Content:** What data did you get back?
+    - **Headers:** What metadata did the server send?
+
+```{r httr-inspect, eval=FALSE, echo=TRUE}
+resp <- GET("https://httpbin.org/get")
+
+# Check the status code (200 = OK)
+status_code(resp)
+
+# See the content (parsed automatically if possible)
 content(resp)
 
-# POST request with JSON body
+# View response headers
+headers(resp)
+```
+
+------------------------------------------------------------------------
+
+## Example: POST request to a real website
+
+-   Here's how you might send a POST request to [Les Républicains - Actualités](https://republicains.fr/actualites/):
+
+```{r httr-post-republicains, eval=FALSE, echo=TRUE}
+library(httr)
+# Example POST request (replace body with actual parameters if needed)
 resp <- POST(
-  "https://httpbin.org/post",
-  body = list(a = 1, b = 2),
-  encode = "json"
+  "https://republicains.fr/actualites/",
+  body = list(param1 = "value1", param2 = "value2"),
+  encode = "form"
 )
 content(resp)
 ```
+
+[https://republicains.fr/actualites/](https://republicains.fr/actualites/)
 
 ------------------------------------------------------------------------
 
@@ -166,7 +211,7 @@ content(resp)
 -   Handle cookies with `set_cookies()`
 -   Use `authenticate()` for basic HTTP authentication
 
-```{r httr-headers, eval=FALSE}
+```{r httr-headers, eval=FALSE,echo=T}
 # Custom User-Agent
 resp <- GET("https://httpbin.org/headers", add_headers(`User-Agent` = "MyScraper/1.0"))
 content(resp)
@@ -175,6 +220,7 @@ content(resp)
 resp <- GET("https://httpbin.org/cookies/set?cookie1=value1", set_cookies(cookie1 = "value1"))
 content(resp)
 ```
+
 
 ------------------------------------------------------------------------
 
@@ -209,32 +255,17 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 
 ------------------------------------------------------------------------
 
-## Parsing JSON and working with responses
-
--   Most APIs return JSON
--   Use `content(resp, as = "parsed")` to get a list/data frame
--   Use `jsonlite::fromJSON()` for more control
-
-```{r httr-json, eval=FALSE, echo=T}
-library(jsonlite)
-resp <- GET("https://api.github.com/repos/tidyverse/ggplot2")
-data <- content(resp, as = "parsed")
-# Or:
-data <- fromJSON(content(resp, as = "text"))
-data$name  # "ggplot2"
-```
-
-------------------------------------------------------------------------
-
 ## Debugging and inspecting requests
 
 -   Use `verbose()` to see the full request/response
 -   Inspect status codes: `status_code(resp)`
 -   Check headers: `headers(resp)`
 
+% Show status code
+
 ------------------------------------------------------------------------
 
-## When to use httr vs. RSelenium
+## When to use `httr` vs. RSelenium
 
 -   Use `httr` for APIs, or simple HTTP requests
 -   Use RSelenium for sites that require full browser automation (JS, logins, complex interactions)
@@ -244,19 +275,73 @@ data$name  # "ggplot2"
 
 # Exercise 5: httr
 
+% Do some GET and POST requests
+
 ------------------------------------------------------------------------
 
-## File management for scraping projects
+## Best practices
 
--   Organize your downloads in folders
--   Use `dir.create()` and `list.files()` to manage files
--   Save raw HTMLs, processed data, and logs separately
--   Example:
+-   **Give feedback in your scraping loops:**
+    - Print progress with `print()` or `cat()` 
 
-```{r file-mgmt, eval=FALSE, echo=T}
-if (!dir.exists("data/html")) dir.create("data/html", recursive = TRUE)
-writeLines("<html>...</html>", "data/html/page1.html")
-files <- list.files("data/html", full.names = TRUE)
+-   **Use `tryCatch` to handle errors:**
+    - Prevents your script from stopping if one download fails
+    - Log errors for later review
+
+-   **Save raw HTMLs and log metadata:**
+    - Save each HTML file with a unique name (e.g., based on URL or date)
+    - Keep a log of URLs, download dates, and file paths
+
+------------------------------------------------------------------------
+
+## Best practices: Feedback, error handling, and saving data
+
+-   **Example: Robust scraping loop with feedback and logging**
+
+```{r best-practices-scraping, eval=FALSE, echo=T}
+urls <- c("https://example.com/page1", "https://example.com/page2")
+log <- tibble(url = character(), file = character(), date = as.POSIXct(character()), status = character())
+
+for (i in seq_along(urls)) {
+  url <- urls[i]
+  cat(sprintf("[%d/%d] Downloading: %s\n", i, length(urls), url))
+  filename <- sprintf("data/html/page_%03d_%s.html", i, format(Sys.Date(), "%Y%m%d"))
+  result <- tryCatch({
+    html <- read_html(url)
+    write_html(html, filename)
+    log <- add_row(log, url = url, file = filename, date = Sys.time(), status = "success")
+  }, error = function(e) {
+    cat(sprintf("Error downloading %s: %s\n", url, e$message))
+    log <- add_row(log, url = url, file = filename, date = Sys.time(), status = "error")
+  })
+}
+```
+
+------------------------------------------------------------------------
+
+## Best practices: Feedback, error handling, and saving data
+
+-   **Example: Robust scraping loop with feedback and logging**
+
+-   This approach helps you:
+    - Track what was downloaded and when
+    - Resume or debug failed downloads
+    - Stay organized as your project grows
+
+    ------------------------------------------------------------------------
+
+## Best practices: Feedback, error handling, and saving data
+
+-   **Example: Robust scraping loop with feedback and logging**
+
+-   Use `tryCatch` in R to handle errors and keep your script running
+
+```{r trycatch, eval=FALSE, echo=T}
+tryCatch({
+  # Your scraping code
+}, error = function(e) {
+  cat("Error:", e$message, "\n", file = "scrape.log", append = TRUE)
+})
 ```
 
 ------------------------------------------------------------------------
@@ -271,15 +356,6 @@ files <- list.files("data/html", full.names = TRUE)
 0 2 * * * Rscript /path/to/your_script.R
 ```
 
--   Use `tryCatch` in R to handle errors and keep your script running
-
-```{r trycatch, eval=FALSE,echo=T}
-tryCatch({
-  # Your scraping code
-}, error = function(e) {
-  cat("Error:", e$message, "\n", file = "scrape.log", append = TRUE)
-})
-```
 
 ------------------------------------------------------------------------
 
@@ -293,8 +369,12 @@ tryCatch({
 -   **Requirements:**
     - Access to a remote server (cloud VM, university server, Raspberry Pi, etc.)
     - Ability to install R and all required packages
-    - For browser automation: ability to run a browser or headless browser (e.g., Chrome headless, Selenium server)
     - (Recommended) Use Docker to package your environment for reproducibility
+
+
+------------------------------------------------------------------------
+
+## Scheduling scraping scripts remotely
 
 -   **What is Docker?**
     - Docker "containerizes" your code and all its dependencies
@@ -306,7 +386,7 @@ tryCatch({
     - Windows: Task Scheduler
     - Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.
 
-    ------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 
 -   **Example: Simple Dockerfile for an R scraping script**
@@ -318,15 +398,10 @@ COPY myscript.R /myscript.R
 CMD ["Rscript", "/myscript.R"]
 ```
 
--   Build and run with:
-    - `docker build -t my-scraper .`
-    - `docker run my-scraper`
-
 -   **Challenges:**
     - Need to manage credentials securely (API keys, passwords)
     - Need to handle errors, logging, and notifications
     - More technical knowledge required (command line, server setup, Docker basics)
-    - For browser automation, may need to run Selenium in a separate container (see Selenium Docker images)
 
 -   **Tip:** Start simple (local cron job), then move to Docker/cloud as your needs grow!
 
@@ -375,6 +450,10 @@ paths_allowed("https://example.com/path")
     - Summarize, clean, or transform scraped data
     - Brainstorm strategies for scraping tricky or dynamic sites
     - Provide documentation links and learning resources
+    
+------------------------------------------------------------------------
+
+## Using ChatGPT (or LLMs) for web scraping
 
 -   **Limitations and challenges:**
     - May suggest code that doesn't work or is outdated ("hallucination")
@@ -391,6 +470,7 @@ paths_allowed("https://example.com/path")
 
 -   OCR: Extract text from images and PDFs (`tesseract`, `pdftools`)
 -   Regular expressions: Clean and extract data from messy text
+-   Text as data
 -   Images as data: Download and analyze images
 -   Geocoding: Convert addresses to coordinates (`tidygeocoder`)
 -   Crawling: `firecrawl`, `crawlR`
@@ -398,6 +478,12 @@ paths_allowed("https://example.com/path")
 ------------------------------------------------------------------------
 
 # Exercise 6: Hands-on Project
+
+% -   **Goal:** Scrape a website of your choice and store the data
+% Feedback in loop
+% Error handling - tryCatch
+% Logging - keeping track of URLs and download date
+% File management - Saving files to not start again every time
 
 ------------------------------------------------------------------------
 

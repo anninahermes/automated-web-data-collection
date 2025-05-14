@@ -210,21 +210,22 @@ Cornelius Erfort
 <section id="about-today" class="slide level2">
 <h2>About today</h2>
 <ul>
-<li>Focus on advanced web scraping techniques</li>
+<li>Focus on more advanced web scraping techniques</li>
 <li>Learn to handle dynamic content and browser automation</li>
 <li>Manage files and schedule scraping jobs</li>
 <li>Understand scraping challenges (CAPTCHAs, rate limits, proxies)</li>
 <li>Discuss ethics and legal aspects</li>
-<li>Hands-on project to apply your skills</li>
+<li>Hands-on projects</li>
 </ul>
 </section>
-<section id="dynamic-content-why-is-it-difficult" class="slide level2">
-<h2>Dynamic Content: Why is it difficult?</h2>
+<section id="dynamic-content-on-websites" class="slide level2">
+<h2>Dynamic Content on Websites</h2>
 <ul>
 <li>Many websites use JavaScript to load data after the initial HTML is loaded</li>
 <li>Standard tools like <code>rvest</code> only see the initial HTML</li>
 <li>Data may be loaded via AJAX, appear after clicks, or require scrolling</li>
 </ul>
+<p>% Example for dynamic website</p>
 </section>
 <section id="rselenium-automate-your-browser" class="slide level2">
 <h2>RSelenium: Automate your browser</h2>
@@ -271,9 +272,8 @@ Cornelius Erfort
 <span id="cb1-16"><a href=""></a>remDr<span class="sc">$</span><span class="fu">close</span>()</span>
 <span id="cb1-17"><a href=""></a>rD<span class="sc">$</span>server<span class="sc">$</span><span class="fu">stop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section class="slide level2">
-
+<p>% Example for dynamic website: Demonstrate RSelenium</p>
+<p>% Install RSelenium</p>
 </section>
 <section>
 <section id="exercise-4-rselenium" class="title-slide slide level1 center">
@@ -287,6 +287,7 @@ Cornelius Erfort
 <li>Often you can recreate browser behavior instead of using RSelenium</li>
 <li>Example: Find the JSON endpoint behind a table or chart</li>
 </ul>
+<p>% Example for dynamic website: Show HTTP request</p>
 </section>
 <section id="http-requests-and-the-httr-package" class="slide level2">
 <h2>HTTP requests and the httr package</h2>
@@ -314,12 +315,64 @@ Cornelius Erfort
 <span id="cb2-4"><a href=""></a><span class="fu">content</span>(resp)</span>
 <span id="cb2-5"><a href=""></a></span>
 <span id="cb2-6"><a href=""></a><span class="co"># GET with query parameters</span></span>
-<span id="cb2-7"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/get"</span>, <span class="at">query =</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Cornelius"</span>, <span class="at">course =</span> <span class="st">"webscraping"</span>))</span>
+<span id="cb2-7"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/get"</span>, <span class="at">query =</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"dynamics"</span>, <span class="at">course =</span> <span class="st">"webscraping"</span>))</span>
 <span id="cb2-8"><a href=""></a><span class="fu">content</span>(resp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="example-post-request-with-httr" class="slide level2">
-<h2>Example: POST request with httr</h2>
+<section id="get-requests-and-query-parameters" class="slide level2">
+<h2>GET requests and query parameters</h2>
+<ul>
+<li><p>Query parameters are added to a URL after a <code>?</code></p></li>
+<li><p>Each parameter is a key-value pair: <code>key=value</code></p></li>
+<li><p>Multiple parameters are separated by <code>&amp;</code></p></li>
+<li><p>Example:</p>
+<p><code>https://api.example.com/search?query=webscraping&amp;lang=en&amp;page=2</code></p>
+<ul>
+<li><code>query=webscraping</code> (search term)</li>
+<li><code>lang=en</code> (language)</li>
+<li><code>page=2</code> (page number)</li>
+</ul></li>
+</ul>
+</section>
+<section id="inspecting-http-responses" class="slide level2">
+<h2>Inspecting HTTP Responses</h2>
+<ul>
+<li>After making a request with <code>httr</code>, always check the response:
+<ul>
+<li><strong>Status code:</strong> Was the request successful?</li>
+<li><strong>Content:</strong> What data did you get back?</li>
+<li><strong>Headers:</strong> What metadata did the server send?</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/get"</span>)</span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a><span class="co"># Check the status code (200 = OK)</span></span>
+<span id="cb3-4"><a href=""></a><span class="fu">status_code</span>(resp)</span>
+<span id="cb3-5"><a href=""></a></span>
+<span id="cb3-6"><a href=""></a><span class="co"># See the content (parsed automatically if possible)</span></span>
+<span id="cb3-7"><a href=""></a><span class="fu">content</span>(resp)</span>
+<span id="cb3-8"><a href=""></a></span>
+<span id="cb3-9"><a href=""></a><span class="co"># View response headers</span></span>
+<span id="cb3-10"><a href=""></a><span class="fu">headers</span>(resp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-post-request-to-a-real-website" class="slide level2">
+<h2>Example: POST request to a real website</h2>
+<ul>
+<li>Here’s how you might send a POST request to <a href="https://republicains.fr/actualites/">Les Républicains - Actualités</a>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(httr)</span>
+<span id="cb4-2"><a href=""></a><span class="co"># Example POST request (replace body with actual parameters if needed)</span></span>
+<span id="cb4-3"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">POST</span>(</span>
+<span id="cb4-4"><a href=""></a>  <span class="st">"https://republicains.fr/actualites/"</span>,</span>
+<span id="cb4-5"><a href=""></a>  <span class="at">body =</span> <span class="fu">list</span>(<span class="at">param1 =</span> <span class="st">"value1"</span>, <span class="at">param2 =</span> <span class="st">"value2"</span>),</span>
+<span id="cb4-6"><a href=""></a>  <span class="at">encode =</span> <span class="st">"form"</span></span>
+<span id="cb4-7"><a href=""></a>)</span>
+<span id="cb4-8"><a href=""></a><span class="fu">content</span>(resp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://republicains.fr/actualites/">https://republicains.fr/actualites/</a></p>
 </section>
 <section id="custom-headers-authentication-and-cookies" class="slide level2">
 <h2>Custom headers, authentication, and cookies</h2>
@@ -329,6 +382,15 @@ Cornelius Erfort
 <li>Handle cookies with <code>set_cookies()</code></li>
 <li>Use <code>authenticate()</code> for basic HTTP authentication</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Custom User-Agent</span></span>
+<span id="cb5-2"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/headers"</span>, <span class="fu">add_headers</span>(<span class="st">`</span><span class="at">User-Agent</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"MyScraper/1.0"</span>))</span>
+<span id="cb5-3"><a href=""></a><span class="fu">content</span>(resp)</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a><span class="co"># Cookies</span></span>
+<span id="cb5-6"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/cookies/set?cookie1=value1"</span>, <span class="fu">set_cookies</span>(<span class="at">cookie1 =</span> <span class="st">"value1"</span>))</span>
+<span id="cb5-7"><a href=""></a><span class="fu">content</span>(resp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="working-with-cookies-in-httr" class="slide level2">
 <h2>Working with cookies in httr</h2>
@@ -342,35 +404,19 @@ Cornelius Erfort
 <section id="working-with-cookies-in-httr-1" class="slide level2">
 <h2>Working with cookies in httr</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(httr)</span>
-<span id="cb3-2"><a href=""></a><span class="co"># Set a cookie in your request</span></span>
-<span id="cb3-3"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/cookies"</span>, <span class="fu">set_cookies</span>(<span class="at">mycookie =</span> <span class="st">"cookievalue"</span>))</span>
-<span id="cb3-4"><a href=""></a><span class="fu">content</span>(resp)</span>
-<span id="cb3-5"><a href=""></a></span>
-<span id="cb3-6"><a href=""></a><span class="co"># Read cookies from a response</span></span>
-<span id="cb3-7"><a href=""></a>cookies <span class="ot">&lt;-</span> <span class="fu">cookies</span>(resp)</span>
-<span id="cb3-8"><a href=""></a>cookies</span>
-<span id="cb3-9"><a href=""></a></span>
-<span id="cb3-10"><a href=""></a><span class="co"># Persist cookies across requests using a handle</span></span>
-<span id="cb3-11"><a href=""></a>h <span class="ot">&lt;-</span> <span class="fu">handle</span>(<span class="st">"https://httpbin.org"</span>)</span>
-<span id="cb3-12"><a href=""></a><span class="fu">GET</span>(<span class="at">handle =</span> h, <span class="at">path =</span> <span class="st">"/cookies/set?cookie1=value1"</span>)</span>
-<span id="cb3-13"><a href=""></a><span class="fu">GET</span>(<span class="at">handle =</span> h, <span class="at">path =</span> <span class="st">"/cookies"</span>)  <span class="co"># cookie1 is sent automatically</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="parsing-json-and-working-with-responses" class="slide level2">
-<h2>Parsing JSON and working with responses</h2>
-<ul>
-<li>Most APIs return JSON</li>
-<li>Use <code>content(resp, as = "parsed")</code> to get a list/data frame</li>
-<li>Use <code>jsonlite::fromJSON()</code> for more control</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(jsonlite)</span>
-<span id="cb4-2"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://api.github.com/repos/tidyverse/ggplot2"</span>)</span>
-<span id="cb4-3"><a href=""></a>data <span class="ot">&lt;-</span> <span class="fu">content</span>(resp, <span class="at">as =</span> <span class="st">"parsed"</span>)</span>
-<span id="cb4-4"><a href=""></a><span class="co"># Or:</span></span>
-<span id="cb4-5"><a href=""></a>data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">content</span>(resp, <span class="at">as =</span> <span class="st">"text"</span>))</span>
-<span id="cb4-6"><a href=""></a>data<span class="sc">$</span>name  <span class="co"># "ggplot2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(httr)</span>
+<span id="cb6-2"><a href=""></a><span class="co"># Set a cookie in your request</span></span>
+<span id="cb6-3"><a href=""></a>resp <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">"https://httpbin.org/cookies"</span>, <span class="fu">set_cookies</span>(<span class="at">mycookie =</span> <span class="st">"cookievalue"</span>))</span>
+<span id="cb6-4"><a href=""></a><span class="fu">content</span>(resp)</span>
+<span id="cb6-5"><a href=""></a></span>
+<span id="cb6-6"><a href=""></a><span class="co"># Read cookies from a response</span></span>
+<span id="cb6-7"><a href=""></a>cookies <span class="ot">&lt;-</span> <span class="fu">cookies</span>(resp)</span>
+<span id="cb6-8"><a href=""></a>cookies</span>
+<span id="cb6-9"><a href=""></a></span>
+<span id="cb6-10"><a href=""></a><span class="co"># Persist cookies across requests using a handle</span></span>
+<span id="cb6-11"><a href=""></a>h <span class="ot">&lt;-</span> <span class="fu">handle</span>(<span class="st">"https://httpbin.org"</span>)</span>
+<span id="cb6-12"><a href=""></a><span class="fu">GET</span>(<span class="at">handle =</span> h, <span class="at">path =</span> <span class="st">"/cookies/set?cookie1=value1"</span>)</span>
+<span id="cb6-13"><a href=""></a><span class="fu">GET</span>(<span class="at">handle =</span> h, <span class="at">path =</span> <span class="st">"/cookies"</span>)  <span class="co"># cookie1 is sent automatically</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="debugging-and-inspecting-requests" class="slide level2">
@@ -380,9 +426,10 @@ Cornelius Erfort
 <li>Inspect status codes: <code>status_code(resp)</code></li>
 <li>Check headers: <code>headers(resp)</code></li>
 </ul>
+<p>% Show status code</p>
 </section>
 <section id="when-to-use-httr-vs.-rselenium" class="slide level2">
-<h2>When to use httr vs.&nbsp;RSelenium</h2>
+<h2>When to use <code>httr</code> vs.&nbsp;RSelenium</h2>
 <ul>
 <li>Use <code>httr</code> for APIs, or simple HTTP requests</li>
 <li>Use RSelenium for sites that require full browser automation (JS, logins, complex interactions)</li>
@@ -395,20 +442,76 @@ Cornelius Erfort
 <section>
 <section id="exercise-5-httr" class="title-slide slide level1 center">
 <h1>Exercise 5: httr</h1>
-
+<p>% Do some GET and POST requests</p>
 </section>
-<section id="file-management-for-scraping-projects" class="slide level2">
-<h2>File management for scraping projects</h2>
+<section id="best-practices" class="slide level2">
+<h2>Best practices</h2>
 <ul>
-<li>Organize your downloads in folders</li>
-<li>Use <code>dir.create()</code> and <code>list.files()</code> to manage files</li>
-<li>Save raw HTMLs, processed data, and logs separately</li>
-<li>Example:</li>
+<li><strong>Give feedback in your scraping loops:</strong>
+<ul>
+<li>Print progress with <code>print()</code> or <code>cat()</code></li>
+</ul></li>
+<li><strong>Use <code>tryCatch</code> to handle errors:</strong>
+<ul>
+<li>Prevents your script from stopping if one download fails</li>
+<li>Log errors for later review</li>
+</ul></li>
+<li><strong>Save raw HTMLs and log metadata:</strong>
+<ul>
+<li>Save each HTML file with a unique name (e.g., based on URL or date)</li>
+<li>Keep a log of URLs, download dates, and file paths</li>
+</ul></li>
+</ul>
+</section>
+<section id="best-practices-feedback-error-handling-and-saving-data" class="slide level2">
+<h2>Best practices: Feedback, error handling, and saving data</h2>
+<ul>
+<li><strong>Example: Robust scraping loop with feedback and logging</strong></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"data/html"</span>)) <span class="fu">dir.create</span>(<span class="st">"data/html"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-2"><a href=""></a><span class="fu">writeLines</span>(<span class="st">"&lt;html&gt;...&lt;/html&gt;"</span>, <span class="st">"data/html/page1.html"</span>)</span>
-<span id="cb5-3"><a href=""></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data/html"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>urls <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"https://example.com/page1"</span>, <span class="st">"https://example.com/page2"</span>)</span>
+<span id="cb7-2"><a href=""></a>log <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">url =</span> <span class="fu">character</span>(), <span class="at">file =</span> <span class="fu">character</span>(), <span class="at">date =</span> <span class="fu">as.POSIXct</span>(<span class="fu">character</span>()), <span class="at">status =</span> <span class="fu">character</span>())</span>
+<span id="cb7-3"><a href=""></a></span>
+<span id="cb7-4"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(urls)) {</span>
+<span id="cb7-5"><a href=""></a>  url <span class="ot">&lt;-</span> urls[i]</span>
+<span id="cb7-6"><a href=""></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"[%d/%d] Downloading: %s</span><span class="sc">\n</span><span class="st">"</span>, i, <span class="fu">length</span>(urls), url))</span>
+<span id="cb7-7"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"data/html/page_%03d_%s.html"</span>, i, <span class="fu">format</span>(<span class="fu">Sys.Date</span>(), <span class="st">"%Y%m%d"</span>))</span>
+<span id="cb7-8"><a href=""></a>  result <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb7-9"><a href=""></a>    html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
+<span id="cb7-10"><a href=""></a>    <span class="fu">write_html</span>(html, filename)</span>
+<span id="cb7-11"><a href=""></a>    log <span class="ot">&lt;-</span> <span class="fu">add_row</span>(log, <span class="at">url =</span> url, <span class="at">file =</span> filename, <span class="at">date =</span> <span class="fu">Sys.time</span>(), <span class="at">status =</span> <span class="st">"success"</span>)</span>
+<span id="cb7-12"><a href=""></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb7-13"><a href=""></a>    <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Error downloading %s: %s</span><span class="sc">\n</span><span class="st">"</span>, url, e<span class="sc">$</span>message))</span>
+<span id="cb7-14"><a href=""></a>    log <span class="ot">&lt;-</span> <span class="fu">add_row</span>(log, <span class="at">url =</span> url, <span class="at">file =</span> filename, <span class="at">date =</span> <span class="fu">Sys.time</span>(), <span class="at">status =</span> <span class="st">"error"</span>)</span>
+<span id="cb7-15"><a href=""></a>  })</span>
+<span id="cb7-16"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="best-practices-feedback-error-handling-and-saving-data-1" class="slide level2">
+<h2>Best practices: Feedback, error handling, and saving data</h2>
+<ul>
+<li><p><strong>Example: Robust scraping loop with feedback and logging</strong></p></li>
+<li><p>This approach helps you:</p>
+<ul>
+<li>Track what was downloaded and when</li>
+<li>Resume or debug failed downloads</li>
+<li>Stay organized as your project grows</li>
+</ul>
+<hr></li>
+</ul>
+</section>
+<section id="best-practices-feedback-error-handling-and-saving-data-2" class="slide level2">
+<h2>Best practices: Feedback, error handling, and saving data</h2>
+<ul>
+<li><p><strong>Example: Robust scraping loop with feedback and logging</strong></p></li>
+<li><p>Use <code>tryCatch</code> in R to handle errors and keep your script running</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">tryCatch</span>({</span>
+<span id="cb8-2"><a href=""></a>  <span class="co"># Your scraping code</span></span>
+<span id="cb8-3"><a href=""></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb8-4"><a href=""></a>  <span class="fu">cat</span>(<span class="st">"Error:"</span>, e<span class="sc">$</span>message, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="at">file =</span> <span class="st">"scrape.log"</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-5"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="scheduled-scraping-automate-your-scripts" class="slide level2">
@@ -419,16 +522,6 @@ Cornelius Erfort
 <li>Example cron job (run every day at 2am):</li>
 </ul>
 <pre><code>0 2 * * * Rscript /path/to/your_script.R</code></pre>
-<ul>
-<li>Use <code>tryCatch</code> in R to handle errors and keep your script running</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">tryCatch</span>({</span>
-<span id="cb7-2"><a href=""></a>  <span class="co"># Your scraping code</span></span>
-<span id="cb7-3"><a href=""></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb7-4"><a href=""></a>  <span class="fu">cat</span>(<span class="st">"Error:"</span>, e<span class="sc">$</span>message, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="at">file =</span> <span class="st">"scrape.log"</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-5"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="scheduling-scraping-scripts-remotely" class="slide level2">
 <h2>Scheduling scraping scripts remotely</h2>
@@ -443,9 +536,13 @@ Cornelius Erfort
 <ul>
 <li>Access to a remote server (cloud VM, university server, Raspberry Pi, etc.)</li>
 <li>Ability to install R and all required packages</li>
-<li>For browser automation: ability to run a browser or headless browser (e.g., Chrome headless, Selenium server)</li>
 <li>(Recommended) Use Docker to package your environment for reproducibility</li>
 </ul></li>
+</ul>
+</section>
+<section id="scheduling-scraping-scripts-remotely-1" class="slide level2">
+<h2>Scheduling scraping scripts remotely</h2>
+<ul>
 <li><strong>What is Docker?</strong>
 <ul>
 <li>Docker “containerizes” your code and all its dependencies</li>
@@ -458,24 +555,23 @@ Cornelius Erfort
 <li>Windows: Task Scheduler</li>
 <li>Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.</li>
 </ul></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<ul>
 <li><strong>Example: Simple Dockerfile for an R scraping script</strong></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb8-1"><a href=""></a><span class="kw">FROM</span> rocker/r-ver:4.3.1</span>
-<span id="cb8-2"><a href=""></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> rvest httr RSelenium tidyverse</span>
-<span id="cb8-3"><a href=""></a><span class="kw">COPY</span> myscript.R /myscript.R</span>
-<span id="cb8-4"><a href=""></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"/myscript.R"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb10-1"><a href=""></a><span class="kw">FROM</span> rocker/r-ver:4.3.1</span>
+<span id="cb10-2"><a href=""></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> rvest httr RSelenium tidyverse</span>
+<span id="cb10-3"><a href=""></a><span class="kw">COPY</span> myscript.R /myscript.R</span>
+<span id="cb10-4"><a href=""></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"/myscript.R"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Build and run with:
-<ul>
-<li><code>docker build -t my-scraper .</code></li>
-<li><code>docker run my-scraper</code></li>
-</ul></li>
 <li><strong>Challenges:</strong>
 <ul>
 <li>Need to manage credentials securely (API keys, passwords)</li>
 <li>Need to handle errors, logging, and notifications</li>
 <li>More technical knowledge required (command line, server setup, Docker basics)</li>
-<li>For browser automation, may need to run Selenium in a separate container (see Selenium Docker images)</li>
 </ul></li>
 <li><strong>Tip:</strong> Start simple (local cron job), then move to Docker/cloud as your needs grow!</li>
 </ul>
@@ -508,8 +604,8 @@ Cornelius Erfort
 <li>Use <code>robotstxt</code> R package to check permissions</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">library</span>(robotstxt)</span>
-<span id="cb9-2"><a href=""></a><span class="fu">paths_allowed</span>(<span class="st">"https://example.com/path"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">library</span>(robotstxt)</span>
+<span id="cb11-2"><a href=""></a><span class="fu">paths_allowed</span>(<span class="st">"https://example.com/path"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-chatgpt-or-llms-for-web-scraping" class="slide level2">
@@ -524,6 +620,11 @@ Cornelius Erfort
 <li>Brainstorm strategies for scraping tricky or dynamic sites</li>
 <li>Provide documentation links and learning resources</li>
 </ul></li>
+</ul>
+</section>
+<section id="using-chatgpt-or-llms-for-web-scraping-1" class="slide level2">
+<h2>Using ChatGPT (or LLMs) for web scraping</h2>
+<ul>
 <li><strong>Limitations and challenges:</strong>
 <ul>
 <li>May suggest code that doesn’t work or is outdated (“hallucination”)</li>
@@ -542,6 +643,7 @@ Cornelius Erfort
 <ul>
 <li>OCR: Extract text from images and PDFs (<code>tesseract</code>, <code>pdftools</code>)</li>
 <li>Regular expressions: Clean and extract data from messy text</li>
+<li>Text as data</li>
 <li>Images as data: Download and analyze images</li>
 <li>Geocoding: Convert addresses to coordinates (<code>tidygeocoder</code>)</li>
 <li>Crawling: <code>firecrawl</code>, <code>crawlR</code></li>
@@ -553,7 +655,7 @@ Cornelius Erfort
 <section>
 <section id="exercise-6-hands-on-project" class="title-slide slide level1 center">
 <h1>Exercise 6: Hands-on Project</h1>
-
+<p>% - <strong>Goal:</strong> Scrape a website of your choice and store the data % Feedback in loop % Error handling - tryCatch % Logging - keeping track of URLs and download date % File management - Saving files to not start again every time</p>
 </section>
 <section class="slide level2">
 

@@ -54,6 +54,41 @@ library(xml2)
 -   Large amounts of data openly accessible
 -   Complementing traditional research methods
 
+## Research Examples Using Web Data Collection
+
+::: {.small-font}
+- **Siegel, Alexandra A., and Vivienne Badaan.** “#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” *American Political Science Review* 114, no. 3 (2020): 837–55. [https://doi.org/10.1017/S0003055420000283](https://doi.org/10.1017/S0003055420000283)
+- **Mitts, Tamar.** "Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet." *Working Paper* (2021). [PDF](https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0)
+- **Boas, Taylor C., and F. Daniel Hidalgo.** “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” *American Journal of Political Science* 55, no. 4 (2011): 869–85. [https://doi.org/10.1111/j.1540-5907.2011.00532.x](https://doi.org/10.1111/j.1540-5907.2011.00532.x)
+:::
+
+---
+
+## Research Examples (cont.)
+
+::: {.small-font}
+- **Bischof, Daniel, and Thomas Kurer.** “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” *The Journal of Politics* (2023). [https://doi.org/10.1086/723985](https://doi.org/10.1086/723985)
+- **Box-Steffensmeier, Janet M., Benjamin W. Campbell, Andrew W. Podob, and Seth J. Walker.** “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” *American Journal of Political Science* 64, no. 4 (2020): 1017–33. [https://doi.org/10.1111/ajps.12528](https://doi.org/10.1111/ajps.12528)
+- **Motolina, Lucia.** “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” *American Political Science Review* 115, no. 1 (2021): 97–113. [https://doi.org/10.1017/S0003055420000672](https://doi.org/10.1017/S0003055420000672)
+:::
+---
+
+## Research Examples (cont.)
+
+::: {.small-font}
+- **Sances, Michael W.** “Defund My Police? The Effect of George Floyd's Murder on Support for Local Police Budgets.” *The Journal of Politics* (2023). [https://doi.org/10.1086/723979](https://doi.org/10.1086/723979)
+- **Lutscher, Philipp M.** “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” *Political Science Research and Methods* (2021): 1–16. [https://doi.org/10.1017/psrm.2021.68](https://doi.org/10.1017/psrm.2021.68)
+- **Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F.** "The PARTYPRESS Database: A new Comparative Database of Parties' Press Releases." *Research and Politics* (2023).
+:::
+---
+
+## Research Examples (cont.)
+
+::: {.small-font}
+- **Morris, Kevin.** “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” *American Political Science Review* 115, no. 3 (2021): 805–20. [https://doi.org/10.1017/S0003055421000253](https://doi.org/10.1017/S0003055421000253)
+- **Gessler, Theresa, & Hunger, Sophia.** "How the refugee crisis and radical right parties shape party competition on immigration." *Political Science Research and Methods*, 10(3), 524-544 (2022). [https://doi.org/10.1017/psrm.2021.64](https://doi.org/10.1017/psrm.2021.64)
+- **Stukal, Denis, Sergey Sanovich, Richard Bonneau, and Joshua A. Tucker.** “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” *American Political Science Review* 116, no. 3 (2022): 843–57. [https://doi.org/10.1017/S0003055421001507](https://doi.org/10.1017/S0003055421001507)
+:::
 ------------------------------------------------------------------------
 
 ## Workshop Goals
@@ -124,19 +159,21 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 ## Overview of the workshop
 
 -   Day 2 Topics:
-    -   Advanced Techniques 1: Dynamic content etc.
-    -   Advanced Techniques 2: File management, Scheduling, challenges
+    -   Dynamic content etc.
+    -   File management, Scheduling, challenges
     -   Ethics and Legal Aspects: Best practices, Ethical considerations, Legal frameworks
     -   Outlook
+    -   Hands-on Project
 
 ------------------------------------------------------------------------
 
 ## Questions
 
--   Feel free to interrupt at any point
-
+-   Any questions so far?
+-   Feel free to interrupt me at any point
 
 ------------------------------------------------------------------------
+
 
 ## Web Scraping Ideas: Easy
 
@@ -202,6 +239,7 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
   <p>This is a <a href="https://www.google.com">Link</a></p>
 </body>
 ```
+
 
 ------------------------------------------------------------------------
 
@@ -294,6 +332,7 @@ qr_code("https://flukeout.github.io/") %>% plot
 ```
 
  <https://flukeout.github.io/>
+ 
 
 ------------------------------------------------------------------------
 
@@ -356,6 +395,7 @@ qr_code("https://selectorgadget.com") %>% plot
 . . .
 
 -   `html_attr(html, name = "name of the html attribute")` gives you the values/texts of the html attribute
+
 
 ------------------------------------------------------------------------
 
@@ -536,6 +576,29 @@ for (link in links) {
 -   Some APIs are free
 -   Some APIs require authentication
 
+
+
+## API Query Parameters Explained
+
+- **latitude**: The latitude of the location for which you want weather data (e.g., `54.09`)
+- **longitude**: The longitude of the location (e.g., `12.14`)
+- **start_date**: The beginning date for the data (format: `YYYY-MM-DD`)
+- **end_date**: The end date for the data (format: `YYYY-MM-DD`)
+- **hourly**: The type of data you want to receive, e.g., `temperature_2m` for hourly temperature at 2 meters above ground
+
+Example URL:
+<https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
+
+- You can change these parameters to get data for different locations, dates, or variables.
+
+## API Query Parameters Explained
+
+
+```{r open-meteo-docs-qr}
+qr_code("https://open-meteo.com/en/docs") %>% plot
+```
+[Open-Meteo API Documentation](https://open-meteo.com/en/docs)
+
 ## API example
 
 <https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
@@ -557,7 +620,6 @@ for (link in links) {
   "temperature_2m_max":
       [14.0,16.4,13.6,16.0,15.1]}}
 ```
-
 
 
 ## APIs: More examples

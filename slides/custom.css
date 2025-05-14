@@ -12,3 +12,7 @@
 .reveal .slides .replace.fragment:not(.current-fragment) {
   display: none;
 }
+
+.small-font {
+  font-size: 0.8em;
+}
