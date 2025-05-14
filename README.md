@@ -6,8 +6,8 @@ The internet is an essential source of data for social science research, providi
 
 ## Workshop Files (Latest Versions)
 
-- [Day 1 Slides (HTML)](slides/day-one.html)
-- [Day 2 Slides (HTML)](slides/day-two.html)
+- [Day 1 Slides (HTML, rendered)](https://htmlpreview.github.io/?https://github.com/cornelius-erfort/automated-web-data-collection/blob/main/slides/day-one.html)
+- [Day 2 Slides (HTML, rendered)](https://htmlpreview.github.io/?https://github.com/cornelius-erfort/automated-web-data-collection/blob/main/slides/day-two.html)
 - [Syllabus (PDF)](Workshop_Syllabus__Automated_Web_Data_Collection.pdf)
 
 # Course Outline Day 1
