@@ -1,8 +1,11 @@
 # Exercise 6: Hands-on Project
 # Goal: Scrape a website of your choice, store the data, and implement best practices.
+# Have a look at the examples in the course repository.
 
 # 1. Choose a website to scrape (static or dynamic content)
 # Example: urls <- c("https://example.com/page1", "https://example.com/page2")
+
+# 2. Before you start coding, think about the neccessary steps and the data structure you want to end up with.
 
 # 2. Set up a scraping loop
 # log <- tibble::tibble(url = character(), file = character(), date = as.POSIXct(character()), status = character())
