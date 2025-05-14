@@ -34,8 +34,6 @@ View(scientists)
 
 
 ##############
-# YOUR TURN
-##############
 
 # Go to the Wikipedia page "List of protests in the 21st century"
 
