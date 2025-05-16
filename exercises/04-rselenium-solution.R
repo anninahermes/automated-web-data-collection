@@ -9,8 +9,10 @@
 library(RSelenium)
 
 # 2. Start Selenium server and browser
-rD <- rsDriver(browser = "chrome")
+rD <- rsDriver(browser = "chrome", port = 4555L)
 remDr <- rD$client
+
+# remDr$
 
 # 3. Navigate to Google
 remDr$navigate("https://www.google.com")
@@ -26,12 +28,30 @@ Sys.sleep(2)
 
 # 7. Extract the titles of the search results (as an example)
 results <- remDr$findElements(using = "css selector", value = "h3")
+
+
+remDr$getPageSource()[[1]]
+
 titles <- sapply(results, function(x) x$getElementText())
 print(titles)
 
 # 8. Close browser and stop server
 remDr$close()
 rD$server$stop()
+
+remDr$navigate("https://www.reddit.com/r/sociology/")
+
+# Scroll down
+for (i in 1:3) {
+  remDr$executeScript("window.scrollTo(0, document.body.scrollHeight);")
+  Sys.sleep(2)
+}
+
+
+remDr$executeScript("window.scrollTo(0, document.body.scrollHeight);")
+
+remDr$getPageSource()[[1]]
+
 
 # ---
 # Try to:

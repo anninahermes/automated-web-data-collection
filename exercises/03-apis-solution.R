@@ -25,7 +25,14 @@ apicall <- str_c("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=ele
 
 # 7. Send the call to the API, and store it in an object.
 # GET(apicall) %>% content("text")
+
 apiresults <- fromJSON(apicall)
+
+str(apiresults)
+names(apiresults)
+
+apiresults$response$docs %>% data.frame %>% View
+
 
 # 8. Inspect the results. What types of data did the API give? How are they ordered?
 View(apiresults)
@@ -43,8 +50,20 @@ View(apiresults)
 # 10. The API only returned data about ten articles. How many results are there in total? 
 # Make a call to the API that gets you the data for results 11-20.
 # (hint: This is explained in the documentation for the API.)
-apicall <- str_c("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=humboldt&api-key=", apikey, "&page=1")
+apicall <- str_c("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=", URLencode('36 hours'), "&api-key=", apikey, "&page=1")
+
+list(q = "election",
+     "api-key" = apikey,
+     
+     ) %>% 
+  str_c(collapse = "&")
+
+apicall
+
+
+
 apiresults <- fromJSON(apicall)
+
 View(apiresults)
 
 # 11. Force the results into a dataframe, using the function data.frame().
@@ -68,7 +87,7 @@ substr(humboldt$response.docs.pub_date, 1, 4)
 nyt_data <- data.frame()
 
 # Build for loop that iterates through number 1-3
-for (i in 1:3) {
+for (i in 1:30) {
   # API call
   apicall <- str_c("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=humboldt&api-key=", apikey, "&page=", i)
   
@@ -82,7 +101,7 @@ for (i in 1:3) {
   nyt_data <- dplyr::bind_rows(nyt_data, apiresults)
   
   # Wait for >12 seconds
-  Sys.sleep(12.1)
+  # Sys.sleep(12.1)
 }
 
 # Optional: Use this package to replicate the assignment: "https://github.com/mkearney/nytimes". 
@@ -106,7 +125,7 @@ library(nytimes)
 Sys.setenv(NYTIMES_API_KEY = apikey)
 
 ## get articles about humboldt
-nytsearch <- ny_search("Germany", pages = 3)
+nytsearch <- ny_search("Germany", pages = 30)
 
 ## convert response to data frame
 # Extract relevant fields from each article
@@ -144,3 +163,4 @@ ggplot(aes(x = month, y = n)) +
        y = "Number of Articles") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+

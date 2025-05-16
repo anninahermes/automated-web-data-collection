@@ -38,7 +38,6 @@ library(xml2)
 -   Discuss ethics and legal aspects
 -   Hands-on projects
 
-
 ------------------------------------------------------------------------
 
 ## Dynamic Content on Websites
@@ -49,7 +48,6 @@ library(xml2)
 
 ------------------------------------------------------------------------
 
-
 ## RSelenium: Automate your browser
 
 -   RSelenium lets you control a real browser from R
@@ -57,18 +55,19 @@ library(xml2)
 -   Works with Chrome, Firefox, Edge, etc.
 -   Useful for scraping sites that require interaction or authentication
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
 ```{r rselenium-qr}
 qr_code("https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf") %>% plot
 ```
-[https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf](https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf)
-:::
-::: {.column width="30%"}
-![](images/rselenium.png){width=50%}
-:::
+
+<https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf>
 :::
 
+::: {.column width="30%"}
+![](images/rselenium.png){width="50%"}
+:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -93,8 +92,6 @@ html <- remDr$getPageSource()[[1]]
 remDr$close()
 rD$server$stop()
 ```
-
-
 
 # Exercise 4: RSelenium
 
@@ -143,25 +140,27 @@ content(resp)
 ## GET requests and query parameters
 
 -   Query parameters are added to a URL after a `?`
+
 -   Each parameter is a key-value pair: `key=value`
+
 -   Multiple parameters are separated by `&`
+
 -   Example:
 
     `https://api.example.com/search?query=webscraping&lang=en&page=2`
 
-    - `query=webscraping` (search term)
-    - `lang=en` (language)
-    - `page=2` (page number)
-
+    -   `query=webscraping` (search term)
+    -   `lang=en` (language)
+    -   `page=2` (page number)
 
 ------------------------------------------------------------------------
 
 ## Inspecting HTTP Responses
 
-- After making a request with `httr`, always check the response:
-    - **Status code:** Was the request successful?
-    - **Content:** What data did you get back?
-    - **Headers:** What metadata did the server send?
+-   After making a request with `httr`, always check the response:
+    -   **Status code:** Was the request successful?
+    -   **Content:** What data did you get back?
+    -   **Headers:** What metadata did the server send?
 
 ```{r httr-inspect, eval=FALSE, echo=TRUE}
 resp <- GET("https://httpbin.org/get")
@@ -193,7 +192,7 @@ resp <- POST(
 content(resp)
 ```
 
-[https://republicains.fr/actualites/](https://republicains.fr/actualites/)
+<https://republicains.fr/actualites/>
 
 ------------------------------------------------------------------------
 
@@ -214,7 +213,6 @@ resp <- GET("https://httpbin.org/cookies/set?cookie1=value1", set_cookies(cookie
 content(resp)
 ```
 
-
 ------------------------------------------------------------------------
 
 ## Working with cookies in httr
@@ -223,7 +221,6 @@ content(resp)
 -   Many sites require cookies to keep you logged in or to track your activity
 -   In `httr`, you can set cookies with `set_cookies()` and read cookies from responses
 -   To persist cookies across multiple requests, use a `handle`
-
 
 ------------------------------------------------------------------------
 
@@ -245,7 +242,6 @@ GET(handle = h, path = "/cookies/set?cookie1=value1")
 GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 ```
 
-
 ------------------------------------------------------------------------
 
 ## Debugging and inspecting requests
@@ -254,14 +250,13 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 -   Inspect status codes: `status_code(resp)`
 -   Check headers: `headers(resp)`
 
-
 ------------------------------------------------------------------------
 
 ## When to use `httr` vs. RSelenium
 
 -   Use `httr` for APIs, or simple HTTP requests
 -   Use RSelenium for sites that require full browser automation (JS, logins, complex interactions)
--   Often, you can use browser dev tools to find the real API and use `httr` instead of RSelenium (faster, more robust)
+-   Often, you can use browser dev tools to find the hidden API and use `httr` instead of RSelenium (faster, more robust)
 
 ------------------------------------------------------------------------
 
@@ -272,19 +267,17 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 ## Best practices
 
 -   **Give feedback in your scraping loops:**
-    - Print progress with `print()` or `cat()` 
-
+    -   Print progress with `print()` or `cat()`
 -   **Use `tryCatch` to handle errors:**
-    - Prevents your script from stopping if one download fails
-    - Log errors for later review
-
+    -   Prevents your script from stopping if one download fails
+    -   Log errors for later review
 -   **Save raw HTMLs and log metadata:**
-    - Save each HTML file with a unique name (e.g., based on URL or date)
-    - Keep a log of URLs, download dates, and file paths
+    -   Save each HTML file with a unique name (e.g., based on URL or date)
+    -   Keep a log of URLs, download dates, and file paths
 
 ------------------------------------------------------------------------
 
-## Best practices: Feedback, error handling, and saving data
+## 
 
 -   **Example: Robust scraping loop with feedback and logging**
 
@@ -314,9 +307,10 @@ for (i in seq_along(urls)) {
 -   **Example: Robust scraping loop with feedback and logging**
 
 -   This approach helps you:
-    - Track what was downloaded and when
-    - Resume or debug failed downloads
-    - Stay organized as your project grows
+
+    -   Track what was downloaded and when
+    -   Resume or debug failed downloads
+    -   Stay organized as your project grows
 
     ------------------------------------------------------------------------
 
@@ -342,46 +336,41 @@ tryCatch({
 -   R package: `taskscheduleR` (Windows)
 -   Example cron job (run every day at 2am):
 
-```
+```         
 0 2 * * * Rscript /path/to/your_script.R
 ```
-
 
 ------------------------------------------------------------------------
 
 ## Scheduling scraping scripts remotely
 
 -   **Why schedule remotely?**
-    - Your script runs even when your laptop is off
-    - More reliable, scalable, and can run on a schedule (e.g., every night)
-    - Useful for long-running or regular scraping tasks
-
+    -   Your script runs even when your laptop is off
+    -   More reliable, scalable, and can run on a schedule (e.g., every night)
+    -   Useful for long-running or regular scraping tasks
 -   **Requirements:**
-    - Access to a remote server (cloud VM, university server, Raspberry Pi, etc.)
-    - Ability to install R and all required packages
-    - (Recommended) Use Docker to package your environment for reproducibility
-
+    -   Access to a remote server (cloud VM, university server, Raspberry Pi, etc.)
+    -   Ability to install R and all required packages
+    -   (Recommended) Use Docker to package your environment for reproducibility
 
 ------------------------------------------------------------------------
 
 ## Scheduling scraping scripts remotely
 
 -   **What is Docker?**
-    - Docker "containerizes" your code and all its dependencies
-    - Ensures your script runs the same everywhere (laptop, server, cloud)
-    - Makes deployment and updates easier
-
+    -   Docker "containerizes" your code and all its dependencies
+    -   Ensures your script runs the same everywhere (laptop, server, cloud)
+    -   Makes deployment and updates easier
 -   **Scheduling options:**
-    - Linux: `cron` jobs
-    - Windows: Task Scheduler
-    - Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.
+    -   Linux: `cron` jobs
+    -   Windows: Task Scheduler
+    -   Cloud: GitHub Actions, Google Cloud Scheduler, AWS Lambda, etc.
 
 ------------------------------------------------------------------------
 
-
 -   **Example: Simple Dockerfile for an R scraping script**
 
-```Dockerfile
+``` dockerfile
 FROM rocker/r-ver:4.3.1
 RUN install2.r --error rvest httr RSelenium tidyverse
 COPY myscript.R /myscript.R
@@ -389,10 +378,9 @@ CMD ["Rscript", "/myscript.R"]
 ```
 
 -   **Challenges:**
-    - Need to manage credentials securely (API keys, passwords)
-    - Need to handle errors, logging, and notifications
-    - More technical knowledge required (command line, server setup, Docker basics)
-
+    -   Need to manage credentials securely (API keys, passwords)
+    -   Need to handle errors, logging, and notifications
+    -   More technical knowledge required (command line, server setup, Docker basics)
 -   **Tip:** Start simple (local cron job), then move to Docker/cloud as your needs grow!
 
 ------------------------------------------------------------------------
@@ -403,7 +391,6 @@ CMD ["Rscript", "/myscript.R"]
 -   Rate limits: Add `Sys.sleep()` between requests, randomize intervals
 -   Session IDs: Use cookies, headers, or RSelenium to maintain sessions
 -   Proxies: Use proxy servers to rotate IPs (see `httr::use_proxy()` or RSelenium proxy settings)
-
 
 ------------------------------------------------------------------------
 
@@ -434,25 +421,24 @@ paths_allowed("https://example.com/path")
 ## Using ChatGPT (or LLMs) for web scraping
 
 -   **How LLMs can help:**
-    - Generate R code for scraping (rvest, httr, RSelenium, etc.)
-    - Suggest CSS selectors or regular expressions for extracting data
-    - Explain error messages and help debug code
-    - Summarize, clean, or transform scraped data
-    - Brainstorm strategies for scraping tricky or dynamic sites
-    - Provide documentation links and learning resources
-    
+    -   Generate R code for scraping (rvest, httr, RSelenium, etc.)
+    -   Suggest CSS selectors or regular expressions for extracting data
+    -   Explain error messages and help debug code
+    -   Summarize, clean, or transform scraped data
+    -   Brainstorm strategies for scraping tricky or dynamic sites
+    -   Provide documentation links and learning resources
+
 ------------------------------------------------------------------------
 
 ## Using ChatGPT (or LLMs) for web scraping
 
 -   **Limitations and challenges:**
-    - May suggest code that doesn't work or is outdated ("hallucination")
-
+    -   May suggest code that doesn't work or is outdated ("hallucination")
 -   **Best practices:**
-    - Always test and review generated code before running
-    - Use LLMs as a coding assistant, not a replacement for understanding
-    - Combine LLM suggestions with browser dev tools and official documentation
-    - Ask for explanations, not just code
+    -   Always test and review generated code before running
+    -   Be critical, it might only look like it works
+    -   Combine LLM suggestions with browser dev tools and official documentation
+    -   Ask for explanations, not just code
 
 ------------------------------------------------------------------------
 
@@ -467,7 +453,14 @@ paths_allowed("https://example.com/path")
 
 ------------------------------------------------------------------------
 
-# Exercise 6: Hands-on Project
+## Exercise 6: Hands-on Project
+
+-   Choose a project from the list or propose your own
+-   Projects can also include additional steps like (simple) text analysis, geocoding, or data visualization
+-   Don't start off coding right away, but think about the steps you need to take
+-   Divide the project into smaller tasks
+-   Discuss your project with your neighbor
+-   For each step, start with a minimal example and make it work
+-   Then think about additional steps like feedback, saving, error handling
 
 ------------------------------------------------------------------------
-
