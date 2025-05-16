@@ -30,7 +30,14 @@ scientists$filename <- str_c("wikipedia/", basename(scientists$link) %>% str_rem
 dir.create("wikipedia")
 
 # Download individual pages
-pbsapply(scientists$link, function (x) if(!file.exists(str_c("wikipedia/", basename(x)  %>% str_remove_all("\\%")))) GET(x) %>% content %>% write_html(file = str_c("wikipedia/", basename(x) %>% str_remove_all("\\%"))))
+pbsapply(scientists$link, function (x) {
+  
+  if(!file.exists(str_c("wikipedia/", basename(x)  %>% 
+                        str_remove_all("\\%")))) GET(x) %>% 
+    content %>% write_html(file = str_c("wikipedia/", basename(x) %>% str_remove_all("\\%")))
+  
+}
+  )
 
 # Check whether I downloaded all HTMLs
 dim(scientists) # Dimensions of my dataframe

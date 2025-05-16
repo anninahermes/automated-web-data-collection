@@ -1,7 +1,6 @@
 # Exercise 4: RSelenium
 # Goal: Use RSelenium to automate a browser, interact with a page, and extract content after JS loads.
 
-
 # Install chromdriver (Chrome) or geckodriver (Firefox)
 # https://github.com/ropensci/RSelenium/issues/100
 

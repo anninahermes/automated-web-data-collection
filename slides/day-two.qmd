@@ -47,8 +47,6 @@ library(xml2)
 -   Standard tools like `rvest` only see the initial HTML
 -   Data may be loaded via AJAX, appear after clicks, or require scrolling
 
-% Example for dynamic website
-
 ------------------------------------------------------------------------
 
 
@@ -97,9 +95,6 @@ rD$server$stop()
 ```
 
 
-% Example for dynamic website: Demonstrate RSelenium
-
-% Install RSelenium
 
 # Exercise 4: RSelenium
 
@@ -110,8 +105,6 @@ rD$server$stop()
 -   Use browser dev tools to inspect network requests
 -   Often you can recreate browser behavior instead of using RSelenium
 -   Example: Find the JSON endpoint behind a table or chart
-
-% Example for dynamic website: Show HTTP request
 
 ------------------------------------------------------------------------
 
@@ -261,7 +254,6 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 -   Inspect status codes: `status_code(resp)`
 -   Check headers: `headers(resp)`
 
-% Show status code
 
 ------------------------------------------------------------------------
 
@@ -274,8 +266,6 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
 ------------------------------------------------------------------------
 
 # Exercise 5: httr
-
-% Do some GET and POST requests
 
 ------------------------------------------------------------------------
 
@@ -478,12 +468,6 @@ paths_allowed("https://example.com/path")
 ------------------------------------------------------------------------
 
 # Exercise 6: Hands-on Project
-
-% -   **Goal:** Scrape a website of your choice and store the data
-% Feedback in loop
-% Error handling - tryCatch
-% Logging - keeping track of URLs and download date
-% File management - Saving files to not start again every time
 
 ------------------------------------------------------------------------
 

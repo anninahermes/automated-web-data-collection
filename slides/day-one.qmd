@@ -726,7 +726,6 @@ fromJSON(json)
 - add additional rows: `tidyr::unnest_longer()`
 
 
-
 ## Hierarchical data
 
 -   Packages: `jsonlite` and `tidyr`

@@ -26,9 +26,11 @@ write_html(myhtml, file = "berlin/0.html")
 library(rvest)
 library(xml2)
 
-for (link in links[1:3]) {  
+for (i in 1:3) {
   
-  filename <- str_c("berlin/", str_extract(link, ".$"), ".html")
+  link <- links[i]
+  
+  filename <- str_c("berlin/", i, ".html")
   
   if(file.exists(filename)) next
   
@@ -59,6 +61,7 @@ files
 # 8. Build a for loop for all files in your folder. Extract the links and add them all to a vector.
 links <- c()
 for (file in files) {
+  print(file)
   
   myhtml <- read_html(file)
   
@@ -78,3 +81,11 @@ links <- str_c("https://www.abgeordnetenwatch.de/", links)
 for (link in links[1:3]) {
   download.file(link, destfile = str_c("berlin/", basename(link), ".html"))
 }
+
+
+
+
+
+
+
+

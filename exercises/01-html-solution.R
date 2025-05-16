@@ -28,5 +28,9 @@ members <- data.frame(link = html_attr(elements, "href"), name = html_text2(elem
 # 11. Try finding a CSS path for the party of the members on the page.
 # There might be no reasonable css path.
 
+html_nodes(html, ".padding-top") %>% html_text %>% str_extract("(?<=Party\r\n).*?(?=\r\n)") %>% str_trim()
+
+# Party\r\n                            Australian Labor Party\r\n
+
 # 12. How would you add the party of members to your dataset?
 # Using regular expressions.

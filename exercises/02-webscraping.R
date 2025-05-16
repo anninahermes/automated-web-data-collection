@@ -1,3 +1,10 @@
+library(xml2)
+xml2::write_html()
+
+download.file(url, destfile)
+read_html(destfile)
+
+
 # webscraping-exercise
 
 # For a project on responsiveness of elected politicians, you were asked to 
@@ -27,3 +34,69 @@
 # 9. The links are only relative URLs, i.e. they are missing the domain. Add the domain using a stringr function.
 
 # 10. Download the first three HTMLs with the full questions/responses. (hint: download.file(url, destfile)
+
+i <- 100
+for (i in 0:2) {
+  url <- paste0(base_url, "?page=", i)
+  file_name <- paste0("abgeordneten_html/", i, ".html")
+  download.file(url, destfile = file_name)
+  Sys.sleep(2)  # Be polite
+}
+i
+
+function(){
+  i <- 200
+}
+
+
+
+# Load required packages
+library(rvest)
+library(xml2)
+library(stringr)
+
+# Base URL and page setup
+base_url <- "https://www.abgeordnetenwatch.de/berlin/fragen-antworten"
+pages <- paste0(base_url, "?page=", 0:2)
+
+# Create folders for HTML files
+dir.create("abgeordneten_html", showWarnings = FALSE)
+dir.create("abgeordneten_qas", showWarnings = FALSE)
+
+# Step 4–5: Download the first 3 list pages and save them
+for (i in 0:2) {
+  url <- paste0(base_url, "?page=", i)
+  file_name <- paste0("abgeordneten_html/", i, ".html")
+  download.file(url, destfile = file_name)
+  Sys.sleep(2)  # Be polite
+}
+
+# Step 6: Read first list page and extract relative links to Q&A pages
+html1 <- read_html("abgeordneten_html/0.html")
+question_links <- html_elements(html1, ".tile__question__teaser a")
+relative_urls <- html_attr(question_links, "href")
+
+# Step 7: Vector of all saved HTML file paths
+html_files <- list.files("abgeordneten_html", full.names = TRUE)
+
+# Step 8: Extract all relative links from all pages
+all_relative_urls <- c()
+
+for (file in html_files) {
+  page <- read_html(file)
+  links <- html_elements(page, ".tile__question__teaser a")
+  hrefs <- html_attr(links, "href")
+  all_relative_urls <- c(all_relative_urls, hrefs)
+}
+
+# Step 9: Convert relative links to full URLs
+base_domain <- "https://www.abgeordnetenwatch.de"
+full_urls <- str_c(base_domain, all_relative_urls)
+
+# Step 10: Download the first 3 Q&A pages
+for (i in 1:3) {
+  qa_url <- full_urls[i]
+  file_name <- paste0("abgeordneten_qas/qa_", i, ".html")
+  download.file(qa_url, destfile = file_name)
+  Sys.sleep(2)  # Be polite
+}
