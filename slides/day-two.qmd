@@ -1,5 +1,5 @@
 ---
-title: "Advanced Web Data Collection (Day 2)"
+title: "Automated Web Data Collection (Day 2)"
 author: "Cornelius Erfort"
 date: "2025-05-17"
 format: 
