@@ -275,34 +275,10 @@ GET(handle = h, path = "/cookies")  # cookie1 is sent automatically
     -   Save each HTML file with a unique name (e.g., based on URL or date)
     -   Keep a log of URLs, download dates, and file paths
 
-------------------------------------------------------------------------
-
-## 
-
--   **Example: Robust scraping loop with feedback and logging**
-
-```{r best-practices-scraping, eval=FALSE, echo=T}
-urls <- c("https://example.com/page1", "https://example.com/page2")
-log <- tibble(url = character(), file = character(), date = as.POSIXct(character()), status = character())
-
-for (i in seq_along(urls)) {
-  url <- urls[i]
-  cat(sprintf("[%d/%d] Downloading: %s\n", i, length(urls), url))
-  filename <- sprintf("data/html/page_%03d_%s.html", i, format(Sys.Date(), "%Y%m%d"))
-  result <- tryCatch({
-    html <- read_html(url)
-    write_html(html, filename)
-    log <- add_row(log, url = url, file = filename, date = Sys.time(), status = "success")
-  }, error = function(e) {
-    cat(sprintf("Error downloading %s: %s\n", url, e$message))
-    log <- add_row(log, url = url, file = filename, date = Sys.time(), status = "error")
-  })
-}
-```
 
 ------------------------------------------------------------------------
 
-## Best practices: Feedback, error handling, and saving data
+## Helpful tools: Feedback, error handling, and saving data
 
 -   **Example: Robust scraping loop with feedback and logging**
 
@@ -314,7 +290,7 @@ for (i in seq_along(urls)) {
 
     ------------------------------------------------------------------------
 
-## Best practices: Feedback, error handling, and saving data
+## Helpful tools: Feedback, error handling, and saving data
 
 -   **Example: Robust scraping loop with feedback and logging**
 
@@ -327,6 +303,22 @@ tryCatch({
   cat("Error:", e$message, "\n", file = "scrape.log", append = TRUE)
 })
 ```
+
+------------------------------------------------------------------------
+
+## Helpful Functions in R
+
+- **Sys.time()**: Returns the current system time.
+- **Sys.Date()**: Returns the current system date.
+- **basename()**: Extracts the file name from a file path.
+- **dirname()**: Extracts the directory path from a file path.
+
+
+
+------------------------------------------------------------------------
+
+## Exercise 7: Helpful tools
+
 
 ------------------------------------------------------------------------
 
@@ -453,7 +445,7 @@ paths_allowed("https://example.com/path")
 
 ------------------------------------------------------------------------
 
-## Exercise 6: Hands-on Project
+## Exercise 7: Hands-on Project
 
 -   Choose a project from the list or propose your own
 -   Projects can also include additional steps like (simple) text analysis, geocoding, or data visualization
@@ -463,4 +455,3 @@ paths_allowed("https://example.com/path")
 -   For each step, start with a minimal example and make it work
 -   Then think about additional steps like feedback, saving, error handling
 
-------------------------------------------------------------------------

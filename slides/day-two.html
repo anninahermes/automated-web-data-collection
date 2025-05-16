@@ -458,32 +458,8 @@ Cornelius Erfort
 </ul></li>
 </ul>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
-<ul>
-<li><strong>Example: Robust scraping loop with feedback and logging</strong></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>urls <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"https://example.com/page1"</span>, <span class="st">"https://example.com/page2"</span>)</span>
-<span id="cb7-2"><a href=""></a>log <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">url =</span> <span class="fu">character</span>(), <span class="at">file =</span> <span class="fu">character</span>(), <span class="at">date =</span> <span class="fu">as.POSIXct</span>(<span class="fu">character</span>()), <span class="at">status =</span> <span class="fu">character</span>())</span>
-<span id="cb7-3"><a href=""></a></span>
-<span id="cb7-4"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(urls)) {</span>
-<span id="cb7-5"><a href=""></a>  url <span class="ot">&lt;-</span> urls[i]</span>
-<span id="cb7-6"><a href=""></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"[%d/%d] Downloading: %s</span><span class="sc">\n</span><span class="st">"</span>, i, <span class="fu">length</span>(urls), url))</span>
-<span id="cb7-7"><a href=""></a>  filename <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"data/html/page_%03d_%s.html"</span>, i, <span class="fu">format</span>(<span class="fu">Sys.Date</span>(), <span class="st">"%Y%m%d"</span>))</span>
-<span id="cb7-8"><a href=""></a>  result <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
-<span id="cb7-9"><a href=""></a>    html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span>
-<span id="cb7-10"><a href=""></a>    <span class="fu">write_html</span>(html, filename)</span>
-<span id="cb7-11"><a href=""></a>    log <span class="ot">&lt;-</span> <span class="fu">add_row</span>(log, <span class="at">url =</span> url, <span class="at">file =</span> filename, <span class="at">date =</span> <span class="fu">Sys.time</span>(), <span class="at">status =</span> <span class="st">"success"</span>)</span>
-<span id="cb7-12"><a href=""></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb7-13"><a href=""></a>    <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Error downloading %s: %s</span><span class="sc">\n</span><span class="st">"</span>, url, e<span class="sc">$</span>message))</span>
-<span id="cb7-14"><a href=""></a>    log <span class="ot">&lt;-</span> <span class="fu">add_row</span>(log, <span class="at">url =</span> url, <span class="at">file =</span> filename, <span class="at">date =</span> <span class="fu">Sys.time</span>(), <span class="at">status =</span> <span class="st">"error"</span>)</span>
-<span id="cb7-15"><a href=""></a>  })</span>
-<span id="cb7-16"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="best-practices-feedback-error-handling-and-saving-data" class="slide level2">
-<h2>Best practices: Feedback, error handling, and saving data</h2>
+<section id="helpful-tools-feedback-error-handling-and-saving-data" class="slide level2">
+<h2>Helpful tools: Feedback, error handling, and saving data</h2>
 <ul>
 <li><p><strong>Example: Robust scraping loop with feedback and logging</strong></p></li>
 <li><p>This approach helps you:</p>
@@ -495,19 +471,31 @@ Cornelius Erfort
 <hr></li>
 </ul>
 </section>
-<section id="best-practices-feedback-error-handling-and-saving-data-1" class="slide level2">
-<h2>Best practices: Feedback, error handling, and saving data</h2>
+<section id="helpful-tools-feedback-error-handling-and-saving-data-1" class="slide level2">
+<h2>Helpful tools: Feedback, error handling, and saving data</h2>
 <ul>
 <li><p><strong>Example: Robust scraping loop with feedback and logging</strong></p></li>
 <li><p>Use <code>tryCatch</code> in R to handle errors and keep your script running</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">tryCatch</span>({</span>
-<span id="cb8-2"><a href=""></a>  <span class="co"># Your scraping code</span></span>
-<span id="cb8-3"><a href=""></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb8-4"><a href=""></a>  <span class="fu">cat</span>(<span class="st">"Error:"</span>, e<span class="sc">$</span>message, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="at">file =</span> <span class="st">"scrape.log"</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-5"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">tryCatch</span>({</span>
+<span id="cb7-2"><a href=""></a>  <span class="co"># Your scraping code</span></span>
+<span id="cb7-3"><a href=""></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb7-4"><a href=""></a>  <span class="fu">cat</span>(<span class="st">"Error:"</span>, e<span class="sc">$</span>message, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="at">file =</span> <span class="st">"scrape.log"</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-5"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="helpful-functions-in-r" class="slide level2">
+<h2>Helpful Functions in R</h2>
+<ul>
+<li><strong>Sys.time()</strong>: Returns the current system time.</li>
+<li><strong>Sys.Date()</strong>: Returns the current system date.</li>
+<li><strong>basename()</strong>: Extracts the file name from a file path.</li>
+<li><strong>dirname()</strong>: Extracts the directory path from a file path.</li>
+</ul>
+</section>
+<section id="exercise-7-helpful-tools" class="slide level2">
+<h2>Exercise 7: Helpful tools</h2>
 </section>
 <section id="scheduled-scraping-automate-your-scripts" class="slide level2">
 <h2>Scheduled scraping: Automate your scripts</h2>
@@ -557,10 +545,10 @@ Cornelius Erfort
 <ul>
 <li><strong>Example: Simple Dockerfile for an R scraping script</strong></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb10-1"><a href=""></a><span class="kw">FROM</span> rocker/r-ver:4.3.1</span>
-<span id="cb10-2"><a href=""></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> rvest httr RSelenium tidyverse</span>
-<span id="cb10-3"><a href=""></a><span class="kw">COPY</span> myscript.R /myscript.R</span>
-<span id="cb10-4"><a href=""></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"/myscript.R"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb9-1"><a href=""></a><span class="kw">FROM</span> rocker/r-ver:4.3.1</span>
+<span id="cb9-2"><a href=""></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> rvest httr RSelenium tidyverse</span>
+<span id="cb9-3"><a href=""></a><span class="kw">COPY</span> myscript.R /myscript.R</span>
+<span id="cb9-4"><a href=""></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"/myscript.R"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Challenges:</strong>
 <ul>
@@ -599,8 +587,8 @@ Cornelius Erfort
 <li>Use <code>robotstxt</code> R package to check permissions</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">library</span>(robotstxt)</span>
-<span id="cb11-2"><a href=""></a><span class="fu">paths_allowed</span>(<span class="st">"https://example.com/path"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>(robotstxt)</span>
+<span id="cb10-2"><a href=""></a><span class="fu">paths_allowed</span>(<span class="st">"https://example.com/path"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-chatgpt-or-llms-for-web-scraping" class="slide level2">
@@ -644,8 +632,8 @@ Cornelius Erfort
 <li>Crawling: <code>firecrawl</code>, <code>crawlR</code></li>
 </ul>
 </section>
-<section id="exercise-6-hands-on-project" class="slide level2">
-<h2>Exercise 6: Hands-on Project</h2>
+<section id="exercise-7-hands-on-project" class="slide level2">
+<h2>Exercise 7: Hands-on Project</h2>
 <ul>
 <li>Choose a project from the list or propose your own</li>
 <li>Projects can also include additional steps like (simple) text analysis, geocoding, or data visualization</li>
@@ -655,9 +643,6 @@ Cornelius Erfort
 <li>For each step, start with a minimal example and make it work</li>
 <li>Then think about additional steps like feedback, saving, error handling</li>
 </ul>
-</section>
-<section class="slide level2">
-
 
 </section></section>
     </div>

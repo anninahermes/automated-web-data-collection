@@ -195,4 +195,35 @@ cat("Are in values:", result, "\n")
 
 # Task:
 # Use the %in% operator to check if specific URLs are present in a list of scraped URLs.
-# Print the results to verify the presence of each URL. 
+# Print the results to verify the presence of each URL.
+
+# ------------------------------------------------------------
+# Stringr Functions
+# ------------------------------------------------------------
+
+# The stringr package provides a cohesive set of functions designed to make working with strings as easy as possible.
+# Here are some commonly used functions:
+
+# str_c: Concatenates strings
+example_string <- str_c("Hello", "World", sep = " ")
+cat("Concatenated string:", example_string, "\n")
+
+# str_detect: Detects the presence of a pattern in a string
+has_hello <- str_detect(example_string, "Hello")
+cat("Contains 'Hello':", has_hello, "\n")
+
+# str_replace: Replaces matched patterns in a string
+replaced_string <- str_replace(example_string, "World", "R")
+cat("Replaced string:", replaced_string, "\n")
+
+# str_split: Splits a string into substrings
+split_string <- str_split(example_string, " ")
+cat("Split string:", split_string, "\n")
+
+# str_trim: Trims whitespace from a string
+trimmed_string <- str_trim("  Hello World  ")
+cat("Trimmed string:", trimmed_string, "\n")
+
+# Task:
+# Use stringr functions to manipulate and analyze strings in your web scraping tasks.
+# For example, use str_detect to find specific patterns in scraped text. 
