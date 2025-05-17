@@ -15,6 +15,31 @@ from: markdown+emoji
 editor: visual
 ---
 
+## Recap of Day 1
+
+- **HTML and Web Structure**:
+  - Understanding HTML and CSS.
+  - Learning how to extract data from web pages using CSS selectorss.
+  - Using `rvest` to scrape static web pages effectively.
+
+## Recap of Day 1
+
+
+- **Web Scraping Techniques**:
+  - Introduction to web scraping and its applications.
+  - Practical exercises on scraping data from multiple pages using loops.
+  - Techniques for handling pagination URLs.
+
+## Recap of Day 1
+
+
+- **APIs and Data Formats**:
+  - Understanding the role of APIs in data retrieval.
+  - Learning to work with JSON and other data formats.
+  - Using R to interact with APIs and parse JSON data.
+
+------------------------------------------------------------------------
+
 ```{r install, echo = F}
 # install.packages("rmarkdown")
 # install.packages("tidyverse")
