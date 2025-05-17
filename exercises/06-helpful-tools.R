@@ -21,6 +21,14 @@ tryCatch({
   cat("Error occurred:", e$message, "\n")
 })
 
+tryCatch({
+  # Code that might throw an error
+  result <- read_html("https://exapmle.com")
+}, error = function(e) {
+  cat("Error occurred:", e$message, "\n")
+})
+
+
 # Task:
 # Use tryCatch to handle potential errors in a web scraping loop.
 # Log errors to a file for later review.

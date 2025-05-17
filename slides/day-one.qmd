@@ -38,13 +38,7 @@ library(xml2)
 
 ## About you
 
-<img src="images/programming.png" class="fragment replace">
-<img src="images/experience.png" class="fragment replace">
-<img src="images/ai.png" class="fragment replace">
-<img src="images/content.png" class="fragment replace">
-<img src="images/goals.png" class="fragment replace">
-<img src="images/format.png" class="fragment replace">
-<img src="images/interaction.png" class="fragment replace">
+<img src="images/programming.png" class="fragment replace"/> <img src="images/experience.png" class="fragment replace"/> <img src="images/ai.png" class="fragment replace"/> <img src="images/content.png" class="fragment replace"/> <img src="images/goals.png" class="fragment replace"/> <img src="images/format.png" class="fragment replace"/> <img src="images/interaction.png" class="fragment replace"/>
 
 ------------------------------------------------------------------------
 
@@ -56,39 +50,42 @@ library(xml2)
 
 ## Research Examples Using Web Data Collection
 
-::: {.small-font}
-- **Siegel, Alexandra A., and Vivienne Badaan.** “#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” *American Political Science Review* 114, no. 3 (2020): 837–55. [https://doi.org/10.1017/S0003055420000283](https://doi.org/10.1017/S0003055420000283)
-- **Mitts, Tamar.** "Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet." *Working Paper* (2021). [PDF](https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0)
-- **Boas, Taylor C., and F. Daniel Hidalgo.** “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” *American Journal of Political Science* 55, no. 4 (2011): 869–85. [https://doi.org/10.1111/j.1540-5907.2011.00532.x](https://doi.org/10.1111/j.1540-5907.2011.00532.x)
+::: small-font
+-   **Siegel, Alexandra A., and Vivienne Badaan.** “#No2Sectarianism: Experimental Approaches to Reducing Sectarian Hate Speech Online.” *American Political Science Review* 114, no. 3 (2020): 837–55. <https://doi.org/10.1017/S0003055420000283>
+-   **Mitts, Tamar.** "Banned: How Deplatforming Extremists Mobilizes Hate in the Dark Corners of the Internet." *Working Paper* (2021). [PDF](https://www.dropbox.com/s/iatnxn5gtq48fxu/Mitts_banned.pdf?dl=0)
+-   **Boas, Taylor C., and F. Daniel Hidalgo.** “Controlling the Airwaves: Incumbency Advantage and Community Radio in Brazil.” *American Journal of Political Science* 55, no. 4 (2011): 869–85. <https://doi.org/10.1111/j.1540-5907.2011.00532.x>
 :::
 
----
+------------------------------------------------------------------------
 
 ## Research Examples (cont.)
 
-::: {.small-font}
-- **Bischof, Daniel, and Thomas Kurer.** “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” *The Journal of Politics* (2023). [https://doi.org/10.1086/723985](https://doi.org/10.1086/723985)
-- **Box-Steffensmeier, Janet M., Benjamin W. Campbell, Andrew W. Podob, and Seth J. Walker.** “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” *American Journal of Political Science* 64, no. 4 (2020): 1017–33. [https://doi.org/10.1111/ajps.12528](https://doi.org/10.1111/ajps.12528)
-- **Motolina, Lucia.** “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” *American Political Science Review* 115, no. 1 (2021): 97–113. [https://doi.org/10.1017/S0003055420000672](https://doi.org/10.1017/S0003055420000672)
+::: small-font
+-   **Bischof, Daniel, and Thomas Kurer.** “Place-Based Campaigning: The Political Impact of Real Grassroots Mobilization.” *The Journal of Politics* (2023). <https://doi.org/10.1086/723985>
+-   **Box-Steffensmeier, Janet M., Benjamin W. Campbell, Andrew W. Podob, and Seth J. Walker.** “I Get By with a Little Help from My Friends: Leveraging Campaign Resources to Maximize Congressional Power.” *American Journal of Political Science* 64, no. 4 (2020): 1017–33. <https://doi.org/10.1111/ajps.12528>
+-   **Motolina, Lucia.** “Electoral Accountability and Particularistic Legislation: Evidence from an Electoral Reform in Mexico.” *American Political Science Review* 115, no. 1 (2021): 97–113. <https://doi.org/10.1017/S0003055420000672>
 :::
----
+
+------------------------------------------------------------------------
 
 ## Research Examples (cont.)
 
-::: {.small-font}
-- **Sances, Michael W.** “Defund My Police? The Effect of George Floyd's Murder on Support for Local Police Budgets.” *The Journal of Politics* (2023). [https://doi.org/10.1086/723979](https://doi.org/10.1086/723979)
-- **Lutscher, Philipp M.** “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” *Political Science Research and Methods* (2021): 1–16. [https://doi.org/10.1017/psrm.2021.68](https://doi.org/10.1017/psrm.2021.68)
-- **Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F.** "The PARTYPRESS Database: A new Comparative Database of Parties' Press Releases." *Research and Politics* (2023).
+::: small-font
+-   **Sances, Michael W.** “Defund My Police? The Effect of George Floyd's Murder on Support for Local Police Budgets.” *The Journal of Politics* (2023). <https://doi.org/10.1086/723979>
+-   **Lutscher, Philipp M.** “Hot Topics: Denial-of-Service Attacks on News Websites in Autocracies.” *Political Science Research and Methods* (2021): 1–16. <https://doi.org/10.1017/psrm.2021.68>
+-   **Erfort, Cornelius, Klüver, Heike, and Stötzer, Lukas F.** "The PARTYPRESS Database: A new Comparative Database of Parties' Press Releases." *Research and Politics* (2023).
 :::
----
+
+------------------------------------------------------------------------
 
 ## Research Examples (cont.)
 
-::: {.small-font}
-- **Morris, Kevin.** “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” *American Political Science Review* 115, no. 3 (2021): 805–20. [https://doi.org/10.1017/S0003055421000253](https://doi.org/10.1017/S0003055421000253)
-- **Gessler, Theresa, & Hunger, Sophia.** "How the refugee crisis and radical right parties shape party competition on immigration." *Political Science Research and Methods*, 10(3), 524-544 (2022). [https://doi.org/10.1017/psrm.2021.64](https://doi.org/10.1017/psrm.2021.64)
-- **Stukal, Denis, Sergey Sanovich, Richard Bonneau, and Joshua A. Tucker.** “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” *American Political Science Review* 116, no. 3 (2022): 843–57. [https://doi.org/10.1017/S0003055421001507](https://doi.org/10.1017/S0003055421001507)
+::: small-font
+-   **Morris, Kevin.** “Turnout and Amendment Four: Mobilizing Eligible Voters Close to Formerly Incarcerated Floridians.” *American Political Science Review* 115, no. 3 (2021): 805–20. <https://doi.org/10.1017/S0003055421000253>
+-   **Gessler, Theresa, & Hunger, Sophia.** "How the refugee crisis and radical right parties shape party competition on immigration." *Political Science Research and Methods*, 10(3), 524-544 (2022). <https://doi.org/10.1017/psrm.2021.64>
+-   **Stukal, Denis, Sergey Sanovich, Richard Bonneau, and Joshua A. Tucker.** “Why Botter: How Pro-Government Bots Fight Opposition in Russia.” *American Political Science Review* 116, no. 3 (2022): 843–57. <https://doi.org/10.1017/S0003055421001507>
 :::
+
 ------------------------------------------------------------------------
 
 ## Workshop Goals
@@ -108,41 +105,43 @@ library(xml2)
 qr_code("https://github.com/cornelius-erfort/automated-web-data-collection") %>% plot
 ```
 
- <https://github.com/cornelius-erfort/automated-web-data-collection>
-
-
+<https://github.com/cornelius-erfort/automated-web-data-collection>
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column width="60%"}
-**Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). _Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining_. Wiley.**
+**Munzert, S., Rubba, C., Meißner, P., & Nyhuis, D. (2014). *Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining*. Wiley.**
 
 ```{r munzert-qr}
 qr_code("https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817") %>% plot
 ```
-[https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817](https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817)
+
+<https://www.wiley.com/en-us/Automated+Data+Collection+with+R%3A+A+Practical+Guide+to+Web+Scraping+and+Text+Mining-p-9781118834817>
 :::
+
 ::: {.column width="40%"}
-![](images/munzert.jpg){width=90%}
+![](images/munzert.jpg){width="90%"}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
-::: columns
+::::: columns
 ::: {.column width="60%"}
-**Wickham, H., & Grolemund, G. (2023). _R for Data Science (2nd Edition)_. O'Reilly Media.**
+**Wickham, H., & Grolemund, G. (2023). *R for Data Science (2nd Edition)*. O'Reilly Media.**
 
 ```{r wickham-qr}
 qr_code("https://r4ds.had.co.nz/") %>% plot
 ```
-[https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)
+
+<https://r4ds.had.co.nz/>
 :::
+
 ::: {.column width="40%"}
-![](images/wickham.jpg){width=90%}
+![](images/wickham.jpg){width="90%"}
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -174,38 +173,37 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
 
 ------------------------------------------------------------------------
 
-
 ## Web Scraping Ideas: Easy
 
-- [Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists) (useful for networks etc.)
-- [Parties' press releases](https://www.spd.de/presse/pressemitteilungen/) (Some parties are very difficult)
-- [Polls (wahlrecht.de)](https://www.wahlrecht.de/umfragen/)
-- [Conference programs (EPSA, DVPW)](https://epsaweb.org/annual-conference/)
-- [Abgeordnetenwatch.de (questions and answers from candidates)](https://www.abgeordnetenwatch.de/)
-- [German Lobby Register](https://www.lobbyregister.bundestag.de/) (can get very complex)
-- [Web Search Results (DuckDuckGo)](https://duckduckgo.com/)
-- [News articles](https://www.nytimes.com/section/world)
+-   [Wikipedia](https://en.wikipedia.org/wiki/List_of_political_scientists) (useful for networks etc.)
+-   [Parties' press releases](https://www.spd.de/presse/pressemitteilungen/) (Some parties are very difficult)
+-   [Polls (wahlrecht.de)](https://www.wahlrecht.de/umfragen/)
+-   [Conference programs (EPSA, DVPW)](https://epsaweb.org/annual-conference/)
+-   [Abgeordnetenwatch.de (questions and answers from candidates)](https://www.abgeordnetenwatch.de/)
+-   [German Lobby Register](https://www.lobbyregister.bundestag.de/) (can get very complex)
+-   [Web Search Results (DuckDuckGo)](https://duckduckgo.com/)
+-   [News articles](https://www.nytimes.com/section/world)
 
 ------------------------------------------------------------------------
 
 ## Web Scraping Ideas: Medium
 
-- [Korean election results (backend, JSON)](https://info.nec.go.kr/)
-- [Parliamentary protocols (sometimes as documents or PDFs)](https://www.bundestag.de/protokolle)
-- [US live election data from the New York Times (JSON backend)](https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html)
-- [Polls (Politico JSON)](https://www.politico.com/interactives/2024/president-election-polls/)
-- [Doctolib appointment availability (JSON)](https://www.doctolib.de/)
-- [List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)](https://dip.bundestag.de/)
-- [Privatization of state owned companies (Treuhand) map](https://treuhandanstalt.online/karte/)
+-   [Korean election results (backend, JSON)](https://info.nec.go.kr/)
+-   [Parliamentary protocols (sometimes as documents or PDFs)](https://www.bundestag.de/protokolle)
+-   [US live election data from the New York Times (JSON backend)](https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html)
+-   [Polls (Politico JSON)](https://www.politico.com/interactives/2024/president-election-polls/)
+-   [Doctolib appointment availability (JSON)](https://www.doctolib.de/)
+-   [List of far-right demonstrations from parliamentary query (parsing PDFs and geocoding)](https://dip.bundestag.de/)
+-   [Privatization of state owned companies (Treuhand) map](https://treuhandanstalt.online/karte/)
 
 ------------------------------------------------------------------------
 
 ## Web Scraping Ideas: Difficult
 
-- German Members of Parliament (MPs) websites (parallel scraping/crawling)
-- [LinkedIn profiles (Python library)](https://pypi.org/project/linkedin-scraper/)
-- [Air quality sensor data worldwide (encrypted via JavaScript)](https://waqi.info/#/c/3.563/8.145/2.2z)
-- [Historic shapefiles for Danish parishes](https://dataforsyningen.dk/data/4840)
+-   German Members of Parliament (MPs) websites (parallel scraping/crawling)
+-   [LinkedIn profiles (Python library)](https://pypi.org/project/linkedin-scraper/)
+-   [Air quality sensor data worldwide (encrypted via JavaScript)](https://waqi.info/#/c/3.563/8.145/2.2z)
+-   [Historic shapefiles for Danish parishes](https://dataforsyningen.dk/data/4840)
 
 ------------------------------------------------------------------------
 
@@ -239,7 +237,6 @@ qr_code("https://r4ds.had.co.nz/") %>% plot
   <p>This is a <a href="https://www.google.com">Link</a></p>
 </body>
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -299,10 +296,7 @@ div p {
   color: orange;
   font-size: 16px;
 }
-
-``` 
-
-
+```
 
 ------------------------------------------------------------------------
 
@@ -324,15 +318,13 @@ div p {
 
 ------------------------------------------------------------------------
 
-
 ## CSS Diner
 
 ```{r css}
 qr_code("https://flukeout.github.io/") %>% plot
 ```
 
- <https://flukeout.github.io/>
- 
+<https://flukeout.github.io/>
 
 ------------------------------------------------------------------------
 
@@ -368,9 +360,7 @@ qr_code("https://selectorgadget.com") %>% plot
 
 <https://selectorgadget.com>
 
-
 ------------------------------------------------------------------------
-
 
 ## Package `xml2`
 
@@ -396,7 +386,6 @@ qr_code("https://selectorgadget.com") %>% plot
 
 -   `html_attr(html, name = "name of the html attribute")` gives you the values/texts of the html attribute
 
-
 ------------------------------------------------------------------------
 
 # Exercise 1: HTML
@@ -414,8 +403,7 @@ But:
 
 -   Data is often on multiple pages
 
-
-#  Basic web scraping workflow
+# Basic web scraping workflow
 
 First step
 
@@ -434,9 +422,6 @@ flowchart LR
   B -- "str_c(URL, pattern)" --> C(list of URLs)
 ```
 
-
-
-
 ------------------------------------------------------------------------
 
 ## Manipulating URLs
@@ -452,9 +437,7 @@ str_c("https:///website.com/page/", 1:10)
 
 ```
 
-
 ------------------------------------------------------------------------
-
 
 ## Manipulating URLs
 
@@ -463,7 +446,6 @@ qr_code("https://labour.org.uk/category/latest/press-release") %>% plot
 ```
 
 <https://labour.org.uk/category/latest/press-release>
-
 
 ## Collecting links from HTML
 
@@ -555,7 +537,6 @@ for (link in links) {
 -   `!` Logical NOT operator\`, inverts a logical (`TRUE` -\> `FALSE`, `FALSE` -\> `TRUE`)
 -   `vector_1 %in% vector_2` operator to check whether the elements from vector_1 are in vector_2
 
-
 ------------------------------------------------------------------------
 
 # Exercise 2: Web Scraping
@@ -576,27 +557,24 @@ for (link in links) {
 -   Some APIs are free
 -   Some APIs require authentication
 
-
-
 ## API Query Parameters Explained
 
-- **latitude**: The latitude of the location for which you want weather data (e.g., `54.09`)
-- **longitude**: The longitude of the location (e.g., `12.14`)
-- **start_date**: The beginning date for the data (format: `YYYY-MM-DD`)
-- **end_date**: The end date for the data (format: `YYYY-MM-DD`)
-- **hourly**: The type of data you want to receive, e.g., `temperature_2m` for hourly temperature at 2 meters above ground
+-   **latitude**: The latitude of the location for which you want weather data (e.g., `54.09`)
+-   **longitude**: The longitude of the location (e.g., `12.14`)
+-   **start_date**: The beginning date for the data (format: `YYYY-MM-DD`)
+-   **end_date**: The end date for the data (format: `YYYY-MM-DD`)
+-   **hourly**: The type of data you want to receive, e.g., `temperature_2m` for hourly temperature at 2 meters above ground
 
-Example URL:
-<https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
+Example URL: <https://archive-api.open-meteo.com/v1/archive?latitude=54.09&longitude=12.14&start_date=2020-05-16&end_date=2020-05-17&hourly=temperature_2m>
 
-- You can change these parameters to get data for different locations, dates, or variables.
+-   You can change these parameters to get data for different locations, dates, or variables.
 
 ## API Query Parameters Explained
-
 
 ```{r open-meteo-docs-qr}
 qr_code("https://open-meteo.com/en/docs") %>% plot
 ```
+
 [Open-Meteo API Documentation](https://open-meteo.com/en/docs)
 
 ## API example
@@ -620,7 +598,6 @@ qr_code("https://open-meteo.com/en/docs") %>% plot
   "temperature_2m_max":
       [14.0,16.4,13.6,16.0,15.1]}}
 ```
-
 
 ## APIs: More examples
 
@@ -649,7 +626,6 @@ qr_code("https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file
 ```
 
 <https://gist.github.com/zhiiiyang/fc19995f7e350f3c7fb940757f6213cf#file-apis-md>
-
 
 ## File formats
 
@@ -721,10 +697,8 @@ fromJSON(json)
 
 . . .
 
-        
-- add additional columns: `tidyr::unnest_wider()`
-- add additional rows: `tidyr::unnest_longer()`
-
+-   add additional columns: `tidyr::unnest_wider()`
+-   add additional rows: `tidyr::unnest_longer()`
 
 ## Hierarchical data
 
