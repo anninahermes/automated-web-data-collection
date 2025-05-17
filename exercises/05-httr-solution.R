@@ -48,7 +48,7 @@ next_url <- html_content %>%
   html_attr("src")
 
 # 13. Build the full URL for the next request by adding "https://www.reddit.com"
-next_url <- paste0("https://www.reddit.com", next_src)
+next_url <- paste0("https://www.reddit.com", next_url)
 
 # 14. Request the next page
 resp2 <- GET(next_url)
@@ -64,7 +64,7 @@ html_attr(html_posts2, "href")
 # 16. Build a loop to extract the posts from the next pages and store titles and links in a data frame.
 sociology_posts <- data.frame(title = character(), link = character())
 
-for (i in 1:5) {
+for (i in 1:50) {
     print(i)
   resp <- GET(next_url)
   html_content <- content(resp)
@@ -78,5 +78,9 @@ for (i in 1:5) {
   next_url <- paste0("https://www.reddit.com", next_url)
   if (is.null(next_url)) break
 }
+
+
+sociology_posts$title <- str_trim(sociology_posts$title)
+sociology_posts <- sociology_posts[sociology_posts$title != "",]
 
 View(sociology_posts)
