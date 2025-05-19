@@ -524,7 +524,7 @@ For loops create a lot of traffic:
 
 ```{r echo = T, eval = F}
 for (link in links) {
-  filename <- basename(link)
+  filename <- basename(link) # basename gives you the last part of the URL
   if(!file.exists(filename)) next
   myhtml <- read_html(link)
   # ...

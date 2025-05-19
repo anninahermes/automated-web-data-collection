@@ -4,6 +4,151 @@
 # you need.
 
 # (If you prefer, you can also use an API of your choice (see also https://github.com/public-apis/public-apis).)
+# https://www.fbi.gov/wanted/api
+
+library(httr)
+library(jsonlite)
+
+response_1 <- GET("https://api.fbi.gov/wanted/v1/list")
+data_1 <- content(response_1, as = "text")
+json_data_1 <- fromJSON(data_1)
+
+json_data_1$total
+json_data_1$items$title[1]
+json_data_1$items$title
+
+names(json_data_1$items)
+
+
+response <- GET("https://api.fbi.gov/wanted/v1/list", 
+                query = list(sex = "female"))
+data <- content(response, as = "text")
+json_data <- fromJSON(data)
+
+
+# 
+# response <- GET("https://api.fbi.gov/wanted/v1/list", 
+#                 query = list(page = 1))
+# data <- content(response, as = "text")
+# json_data <- fromJSON(data)
+# d <- json_data$items
+# df <- d
+# 
+# 
+# response <- GET("https://api.fbi.gov/wanted/v1/list", 
+#                 query = list(page = 2))
+# data <- content(response, as = "text")
+# json_data <- fromJSON(data)
+# d <- json_data$items
+# df <- rbind(df, d) 
+# 
+# 
+# response <- GET("https://api.fbi.gov/wanted/v1/list",
+#                 query = list(page = 13))
+# data <- content(response, as = "text")
+# json_data <- fromJSON(data)
+# d <- json_data$items
+# df <- rbind(df, d)
+
+
+# 
+# # Number of pages you want to retrieve
+# num_pages <- 10
+# 
+# # Initialize empty list to store data from each page
+# all_items <- list()
+# 
+# # Loop through pages
+# for (i in 1:num_pages) {
+#   cat("Fetching page", i, "\n")
+#   response <- GET("https://api.fbi.gov/wanted/v1/list", query = list(page = i))
+#   data <- content(response, as = "text")
+#   json_data <- fromJSON(data)
+#   all_items[[i]] <- json_data$items
+#   Sys.sleep(3)
+# }
+# 
+# # Combine all pages into a single data frame
+# df <- do.call(rbind, lapply(all_items, as.data.frame))
+# 
+# # View result
+# glimpse(df)
+
+
+
+library(httr)
+library(jsonlite)
+
+num_pages <- 50
+all_items <- list()
+
+for (i in 1:num_pages) {
+  cat("Fetching page", i, "\n")
+  response <- GET("https://api.fbi.gov/wanted/v1/list", query = list(page = i))
+  
+  if (status_code(response) == 200) {
+    content_type <- headers(response)[["content-type"]]
+    
+    if (grepl("application/json", content_type)) {
+      data <- content(response, as = "text", encoding = "UTF-8")
+      json_data <- fromJSON(data)
+      all_items[[i]] <- json_data$items
+    } else {
+      cat("Non-JSON content received on page", i, "\n")
+    }
+  } else {
+    cat("Request failed on page", i, "with status", status_code(response), "\n")
+  }
+  
+  Sys.sleep(runif(1, 3, 6))  # avoid hammering the server
+}
+
+# Combine all successful results
+df <- do.call(rbind, lapply(all_items, as.data.frame))
+
+# df %>% 
+#   mutate(crime_type = url %>% 
+#            str_remove(fixed("https://www.fbi.gov/wanted/")),
+#          crime_type = crime_type %>% 
+#            str_extract(".*(?=\\/)")) %>% 
+#   select(url, crime_type) %>% head()
+
+
+df_fbi <- df %>% 
+  mutate(crime_type = url %>% 
+           str_remove(fixed("https://www.fbi.gov/wanted/")),
+         crime_type = crime_type %>% str_remove_all("(?<=\\/).*"),
+         crime_type = crime_type %>% str_remove_all(fixed("/")),
+         .after = url) #%>% 
+  # select(url, crime_type) %>% count(crime_type)
+
+
+df_fbi %>% 
+  ggplot(aes(reward_max, group = crime_type)) +
+  geom_density()
+
+# response <- GET("https://api.fbi.gov/wanted/v1/list", query = list(
+#   field_offices = "miami"
+# ))
+# data <- content(response, as = "text")
+# json_data <- fromJSON(data)
+# 
+# json_data$total
+# print(json_data$items$title[1])
+# json_data$items$title
+# 
+# # with paging
+# response <- GET("https://api.fbi.gov/wanted/v1/list", query = list(
+#   page = 2
+# ))
+# data <- content(response, as = "text")
+# json_data <- fromJSON(data)
+# 
+# json_data$page
+# json_data$items$title
+
+
+
 
 # 1. Create a developer account at the NYT: "https://developer.nytimes.com/get-started"
 

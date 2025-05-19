@@ -8,7 +8,7 @@ library(binman)
 
 
 # Function to install specific ChromeDriver version
-install_chromedriver <- function(version = "136.0.7103.92") {
+install_chromedriver <- function(version = "136.0.7103.94") {
   # 1. Get binman directory
   dir_path <- binman::app_dir("chromedriver", check = TRUE)
   dir_path <- str_c(dir_path, "/mac64_m1", sep = "")
@@ -54,7 +54,7 @@ install_chromedriver <- function(version = "136.0.7103.92") {
 }
 
 # Install the specific version
-install_chromedriver("136.0.7103.92")
+install_chromedriver("136.0.7103.94")
 
 
 
@@ -78,7 +78,7 @@ chrome_options <- list(
 driver <- rsDriver(
   browser = "chrome",
   port = 4447L,
-  chromever = "136.0.7103.92",
+  chromever = "136.0.7103.94",
   extraCapabilities = chrome_options
 )
 
